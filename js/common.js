@@ -1,6 +1,4 @@
 ; (() => {
-  const listOfsportNews = document.querySelector('.listOfsportNews');
-
   setCurrentDate = () => {
     let date = new Date();
     const options = {
@@ -11,28 +9,15 @@
     };
     document.querySelector('.header__date').innerHTML = date.toLocaleString("en-US", options)
   }
+  setCurrentDate();
 
+  // Common getNews method
   getNews = (url) => {
     return fetch(url)
       .then((resp) => resp.json())
   }
 
-  renderSportNews = (allnews) => {
-    listOfsportNews.innerHTML = '';
-
-    allnews.articles.forEach((art) => {
-      let div = document.createElement('div');
-      div.className = 'sport__item';
-      let news = `
-        <p class="latest__title">${art.title}</p>
-        <p class="latest__shortDescr">${art.description}</p>
-        <p class="latest__url"><a href="${art.url}" target="_blank">Open original source</a></p>
-      `
-      div.innerHTML = news;
-      listOfsportNews.appendChild(div);
-    })
-  }
-
+  // Functionality for fetching and rendering Latest News
   getLatestNews = () => {
     getNews('https://newsapi.org/v2/top-headlines?sources=bbc-news&apiKey=eefc0a2a311a42dc8936f6dceba17753')
       .then((latestNews) => {
@@ -51,6 +36,24 @@
         document.querySelector('.latest__itemNews').innerHTML = news;
       })
   }
+  getLatestNews();
+
+  // Functionality for fetching and rendering Sport News
+  const listOfsportNews = document.querySelector('.listOfsportNews');
+  renderSportNews = (allnews) => {
+    listOfsportNews.innerHTML = '';
+    allnews.articles.forEach((art) => {
+      let div = document.createElement('div');
+      div.className = 'sport__item';
+      let news = `
+        <p class="latest__title">${art.title}</p>
+        <p class="latest__shortDescr">${art.description}</p>
+        <p class="latest__url"><a href="${art.url}" target="_blank">Open original source</a></p>
+      `
+      div.innerHTML = news;
+      listOfsportNews.appendChild(div);
+    })
+  }
 
   getESPNNews = () => {
     getNews('https://newsapi.org/v2/top-headlines?sources=espn&apiKey=eefc0a2a311a42dc8936f6dceba17753')
@@ -68,7 +71,4 @@
   document.querySelector('.espn').addEventListener('click', getESPNNews);
   document.querySelector('.nhl').addEventListener('click', getNHLNews);
   document.querySelector('.marca').addEventListener('click', getMarcaNews);
-  
-  setCurrentDate();
-  getLatestNews();
 })()
