@@ -1,125 +1,152 @@
-html, body{
-    margin: 0;
-    height:100%;
-  }
-  p, h1, h2, h3{
-    margin:15px 0;
-  }
-  header{
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    flex-wrap: wrap;
-    min-height: 100px;
-    box-shadow: 0 0 10px 1px #e6f1ff;
-  }
-  .header__title{
-    max-width: 320px;
-    width: 100%;
-    text-align: center;
-  }
-  .header__logo{
-    max-width: 320px;
-    width: 100%;
-    text-align: center;
-  }
-  .header__contacts{
-    max-width: 320px;
-    width: 100%;
-    text-align: center;
-  }
-  .news{
-    display: flex;
-    justify-content: space-around;
-    flex-wrap: wrap;
-  }
-  .news__latest{
-    padding:0 10px;
-    box-sizing: border-box;
-  }
-  .news__latest h1{
-    font-size:5em;
-    color: #999;
-    text-transform: uppercase;
-    text-align: center;
-  }
-  .latest__mark{
-    color: #005fa4;
-  }
-  .latest__itemNews{
-    max-width: 650px;
-  }
-  .latest__source{
-    text-align: center;
-    color: #005fa4;
-    font-size: 2em;
-  }
-  .latest__source::after{
-    content: '';
-    display: block;
-    width:50px;
-    border-bottom: 2px solid #999;
-    margin: 0 auto;
-  }
-  .latest__img{
-    text-align: center
-  }
-  .latest__img img{
-    width: 100%;
-  }
-  .latest__title{
-    font-size: 2em;
-    color: #005fa4;
-  }
-  .latest__shortDescr{
-    font-size: 1.5em;
-    color: #999;
-  }
-  .latest__url a{
-    color:#fff;
-    display: inline-block;
-    text-decoration: none;
-    background: #005fa4;
-    padding:5px 15px;
-  }
-  .latest__url a:hover{
-    background: #999;
-  }
-  .latest__published{
-    color: #999;
-  }
-  .sport__itemNews{
-    text-align: center;
-  }
-  .sport__itemNews img{
-    cursor: pointer;
-  }
-  .news__sport h2{
-    text-align: center;
-  }
-  .sport__title{
-    font-size: 2em;
-    color: #005fa4;
-  }
-  .listOfsportNews{
-    padding:0 10px;
-    box-sizing: border-box;
-  }
-  .sport__item{
-    margin: 3% 0;
-  }
-  .sport__item::after{
-    content:'';
-    display: block;
-    border: 1px solid #999;
-    width: 150px;
-  }
-  footer{
-    display: flex;
-    justify-content: space-evenly;
-    align-items: center;
-    flex-wrap: wrap;
-    min-height: 70px;
-    background: #999;
-    color:#fff;
-  }
+html, body {
+  margin: 0;
+  height:100%;
+}
+
+p, h1, h2, h3 {
+  margin:15px 0;
+}
+
+header {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  flex-wrap: wrap;
+  min-height: 100px;
+  box-shadow: 0 0 10px 1px #e6f1ff;
+}
+
+.header__title {
+  max-width: 320px;
+  width: 100%;
+  text-align: center;
+}
+
+.header__logo {
+  max-width: 320px;
+  width: 100%;
+  text-align: center;
+}
+
+.header__contacts {
+  max-width: 320px;
+  width: 100%;
+  text-align: center;
+}
+
+.news {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+}
+
+.news__latest {
+  padding:0 10px;
+  box-sizing: border-box;
+}
+
+.news__latest h1 {
+  font-size:5em;
+  color: #999;
+  text-transform: uppercase;
+  text-align: center;
+}
+
+.latest__mark {
+  color: #005fa4;
+}
+
+.latest__itemNews {
+  max-width: 650px;
+}
+
+.latest__source {
+  text-align: center;
+  color: #005fa4;
+  font-size: 2em;
+}
+
+.latest__source::after {
+  content: '';
+  display: block;
+  width:50px;
+  border-bottom: 2px solid #999;
+  margin: 0 auto;
+}
+
+.latest__img {
+  text-align: center
+}
+
+.latest__img img {
+  width: 100%;
+}
+
+.latest__title {
+  font-size: 2em;
+  color: #005fa4;
+}
+
+.latest__shortDescr {
+  font-size: 1.5em;
+  color: #999;
+}
+
+.latest__url a {
+  color:#fff;
+  display: inline-block;
+  text-decoration: none;
+  background: #005fa4;
+  padding:5px 15px;
+}
+
+.latest__url a:hover {
+  background: #999;
+}
+
+.latest__published {
+  color: #999;
+}
+
+.sport__itemNews {
+  text-align: center;
+}
+
+.sport__itemNews img {
+  cursor: pointer;
+}
+
+.news__sport h2 {
+  text-align: center;
+}
+
+.sport__title {
+  font-size: 2em;
+  color: #005fa4;
+}
+
+.listOfsportNews {
+  padding:0 10px;
+  box-sizing: border-box;
+}
+
+.sport__item {
+  margin: 3% 0;
+}
+
+.sport__item::after {
+  content:'';
+  display: block;
+  border: 1px solid #999;
+  width: 150px;
+}
+
+footer {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  flex-wrap: wrap;
+  min-height: 70px;
+  background: #999;
+  color:#fff;
+}
