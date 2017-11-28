@@ -108,20 +108,21 @@ header {
   color: #999;
 }
 
-.sport__itemNews {
-  text-align: center;
+.news__sport {
+  max-width: 650px;
+  width: 100%;
+  padding:0 10px;
 }
 
-.sport__itemNews img {
-  cursor: pointer;
-}
-
-.news__sport h2 {
+.news__sport h1 {
+  font-size:5em;
+  color: #999;
+  text-transform: uppercase;
   text-align: center;
 }
 
 .sport__title {
-  font-size: 2em;
+  text-align: center;
   color: #005fa4;
 }
 
@@ -139,6 +140,24 @@ header {
   display: block;
   border: 1px solid #999;
   width: 150px;
+}
+
+.sportSourcesContainer {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.sportSourcesContainer img {
+  width: 120px;
+  height: 120px;
+  cursor: pointer;
+}
+
+.sourceItem {
+  min-width: 150px;
+  min-height: 170px;
+  text-align: center;
 }
 
 footer {

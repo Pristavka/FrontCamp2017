@@ -9,7 +9,13 @@ const getLatestNews = () => {
     .then(latestNews => renderLatestNews(latestNews))
 };
 
-const getSportNews = (url) => {
+const getSportNews = url => {
   getNews(url)
     .then(allnews => renderSportNews(allnews));
+};
+
+const getSportSources = url => {
+  fetch(url)
+    .then(src => src.json())
+    .then(src => renderSportSources(src));
 };

@@ -10,9 +10,6 @@ const setCurrentDate = () => {
   document.querySelector('.header__date').innerHTML = date.toLocaleString("en-US", options)
 };
 
-document.querySelector('.espn').addEventListener('click', () => { getSportNews(resources.espn) });
-document.querySelector('.nhl').addEventListener('click', () => { getSportNews(resources.nhl) });
-document.querySelector('.marca').addEventListener('click', () => { getSportNews(resources.marca) });
-
 setCurrentDate();
 getLatestNews();
+getSportSources(resources.sources);
