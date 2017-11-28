@@ -1,4 +1,1 @@
-const getData = url => {
-  return fetch(url)
-    .then(resp => resp.json())
-};
+const getData = url => fetch(url).then(resp => resp.json());
