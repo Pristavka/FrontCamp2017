@@ -152,14 +152,6 @@ header {
   width:100%;
 }
 
-.sport__item::after {
-  content:'';
-  display: block;
-  border: 1px solid #999;
-  width: 150px;
-  margin: 0 auto;
-}
-
 .sportSourcesContainer {
   display: flex;
   flex-wrap: wrap;
