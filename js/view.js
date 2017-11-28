@@ -1,3 +1,23 @@
+const renderMainContent = () => {
+  const sectionNews = document.createElement('section');
+  const sectionSportList = document.createElement('section');
+  sectionNews.className ='news';
+  sectionSportList.className ='listOfsportNews';
+  sectionNews.innerHTML = `
+      <div class="news__latest latest">
+        <h1>Latest <span class="latest__mark">News</span></h1>
+        <div class="latest__itemNews"></div>
+      </div>
+      <div class="news__sport sport">
+          <h1>Sport <span class="latest__mark">News</span></h1>
+          <h3 class="latest__source">Please, choose News source</h3>
+          <div class="sportSourcesContainer"></div>
+      </div>
+    `;
+  document.querySelector('main').appendChild(sectionNews);
+  document.querySelector('main').appendChild(sectionSportList);
+}
+
 const renderLatestNews = latestNews => {
   const news = `
     <h3 class="latest__source">${latestNews.articles[0].author}</h3>
@@ -14,8 +34,8 @@ const renderLatestNews = latestNews => {
   document.querySelector('.latest__itemNews').innerHTML = news;
 };
 
-const listOfsportNews = document.querySelector('.listOfsportNews');
 const renderSportNews = allnews => {
+  const listOfsportNews = document.querySelector('.listOfsportNews');
   listOfsportNews.innerHTML = '';
   allnews.articles.forEach(art => {
     const div = document.createElement('div');
