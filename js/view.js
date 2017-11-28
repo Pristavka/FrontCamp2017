@@ -1,3 +1,8 @@
+const setCurrentDate = () => {
+  const date = new Date();
+  document.querySelector('.header__date').innerHTML = date.toLocaleString("en-US", timeOptions)
+};
+
 const renderMainContent = () => {
   const sectionNews = document.createElement('section');
   const sectionSportList = document.createElement('section');

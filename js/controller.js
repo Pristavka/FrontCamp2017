@@ -1,14 +1,3 @@
-const setCurrentDate = () => {
-  const date = new Date();
-  const options = {
-    year: 'numeric',
-    month: 'long',
-    day: 'numeric',
-    weekday: 'long',
-  };
-  document.querySelector('.header__date').innerHTML = date.toLocaleString("en-US", options)
-};
-
 const getLatestNews = (url) => {
   getData(url)
     .then(latestNews => {

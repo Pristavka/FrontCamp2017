@@ -3,3 +3,9 @@ const resources = {
   bbc: `https://newsapi.org/v2/top-headlines?sources=bbc-news&apiKey=${api_key}`,
   sources: `https://newsapi.org/v2/sources?category=sport&apiKey=${api_key}`
 };
+const timeOptions = {
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric',
+    weekday: 'long'
+}
