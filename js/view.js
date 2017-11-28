@@ -21,9 +21,8 @@ const renderSportNews = allnews => {
     const div = document.createElement('div');
     div.className = 'sport__item';
     const news = `
-        <p><img src="${art.urlToImage}" alt="${art.title}"></p>
+        <img src="${art.urlToImage}" alt="${art.title}">
         <p class="latest__title">${art.title}</p>
-        <p class="latest__shortDescr">${art.description}</p>
         <p class="latest__url"><a href="${art.url}" target="_blank">Open original source</a></p>
       `
     div.innerHTML = news;
