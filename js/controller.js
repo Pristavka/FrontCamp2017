@@ -6,10 +6,9 @@ const setCurrentDate = () => {
     day: 'numeric',
     weekday: 'long',
   };
-  //this line have to be in view but now it is here =)
   document.querySelector('.header__date').innerHTML = date.toLocaleString("en-US", options)
 };
 
 setCurrentDate();
-getLatestNews();
+getLatestNews(resources.bbc);
 getSportSources(resources.sources);

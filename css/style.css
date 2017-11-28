@@ -127,12 +127,25 @@ header {
 }
 
 .listOfsportNews {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
   padding:0 10px;
   box-sizing: border-box;
 }
 
 .sport__item {
-  margin: 3% 0;
+  margin: 15px 0px;
+  max-width: 320px;
+  text-align: center;
+  border: 1px solid #999;
+  padding: 15px;
+  box-sizing: border-box;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  background: #f3f3f3;
 }
 
 .sport__item::after {
@@ -140,6 +153,7 @@ header {
   display: block;
   border: 1px solid #999;
   width: 150px;
+  margin: 0 auto;
 }
 
 .sportSourcesContainer {

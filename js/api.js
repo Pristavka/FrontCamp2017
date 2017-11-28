@@ -1,11 +1,10 @@
-// Common getNews method
 const getNews = url => {
   return fetch(url)
     .then(resp => resp.json())
 };
 
-const getLatestNews = () => {
-  getNews(resources.bbc)
+const getLatestNews = url => {
+  getNews(url)
     .then(latestNews => renderLatestNews(latestNews))
 };
 
