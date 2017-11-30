@@ -6,15 +6,16 @@
   "scripts": {
     "clean": "rimraf dist",
     "dev": "webpack-dev-server",
-    "build": "webpack --config webpack.config.js",
-    "watch:babel": "npm run clean && babel src --watch -d dist",
-    "build:babel": "npm run clean && babel src -d dist"
+    "build": "npm run clean && webpack --config webpack.config.js",
+    "clean:babel": "rimraf dist-babel",
+    "build:babel": "npm run clean:babel && babel src -d dist-babel",
+    "watch:babel": "npm run clean:babel && babel src --watch -d dist-babel"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/Pristavka/FrontCamp2017.git"
   },
-  "author": "",
+  "author": "Siarhei Prystauka",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/Pristavka/FrontCamp2017/issues"
@@ -32,5 +33,8 @@
     "rimraf": "^2.6.2",
     "webpack": "^3.8.1",
     "webpack-dev-server": "^2.9.5"
+  },
+  "dependencies": {
+    "babel-polyfill": "^6.26.0"
   }
 }

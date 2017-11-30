@@ -1,1 +1,1 @@
-const getData = url => fetch(url).then(resp => resp.json());
+const getData = url => fetch(url, { mode: 'cors' }).then(resp => resp.json());
