@@ -1,9 +1,11 @@
-module.exports = function (babel) {
+module.exports = function ({ types: t }) {
   return {
     visitor: {
-      Program(path) {
-        console.log(path.get('tokens'));
+      MemberExpression(path) {
+        path.replaceWith(
+          t.memberExpression(t.memberExpression(t.identifier(path.node.object.name), t.identifier('prototype')), t.identifier(path.node.property.name))
+        )
       }
     }
-  }
-}
+  };
+};

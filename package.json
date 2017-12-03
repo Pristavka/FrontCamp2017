@@ -9,7 +9,8 @@
     "build": "npm run clean && webpack --config webpack.config.js",
     "clean:babel": "rimraf dist-babel",
     "build:babel": "npm run clean:babel && babel src -d dist-babel",
-    "watch:babel": "npm run clean:babel && babel src --watch -d dist-babel"
+    "watch:babel": "npm run clean:babel && babel src --watch -d dist-babel",
+    "babel-plugin": "babel plg.js -d plg"
   },
   "repository": {
     "type": "git",
