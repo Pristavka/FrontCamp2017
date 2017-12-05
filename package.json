@@ -1,0 +1,32 @@
+{
+  "name": "frontcamp",
+  "version": "1.0.0",
+  "description": "",
+  "main": "src/app.js",
+  "scripts": {
+    "clean": "rimraf dist",
+    "clean:babel": "rimraf dist-babel",
+    "build:babel": "npm run clean:babel && babel src -d dist-babel",
+    "watch:babel": "npm run clean:babel && babel src --watch -d dist-babel"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Pristavka/FrontCamp2017.git"
+  },
+  "author": "Siarhei Prystauka",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Pristavka/FrontCamp2017/issues"
+  },
+  "homepage": "https://github.com/Pristavka/FrontCamp2017#readme",
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-core": "^6.26.0",
+    "babel-preset-env": "^1.6.1",
+    "rimraf": "^2.6.2"
+  },
+  "dependencies": {
+    "babel-polyfill": "^6.26.0",
+    "whatwg-fetch": "^2.0.3"
+  }
+}

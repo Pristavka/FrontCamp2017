@@ -9,9 +9,13 @@ p, h1, h2, h3 {
 
 header {
   display: flex;
+  display: -ms-flexbox;
   justify-content: space-around;
+  -ms-flex-pack: justify;
   align-items: center;
+  -ms-flex-align: center;
   flex-wrap: wrap;
+  -ms-flex-wrap: wrap;
   min-height: 100px;
   box-shadow: 0 0 10px 1px #e6f1ff;
 }
@@ -36,8 +40,11 @@ header {
 
 .news {
   display: flex;
+  display: -ms-flexbox;
   justify-content: space-around;
+  -ms-flex-pack: justify;
   flex-wrap: wrap;
+  -ms-flex-wrap: wrap;
 }
 
 .news__latest {
@@ -128,24 +135,31 @@ header {
 
 .listOfsportNews {
   display: flex;
+  display: -ms-flexbox;
   flex-wrap: wrap;
+  -ms-flex-wrap: wrap;
   justify-content: space-around;
+  -ms-flex-pack: justify;
   padding:0 10px;
   box-sizing: border-box;
 }
 
 .sport__item {
+  display: flex;
+  display: -ms-flexbox;
+  justify-content: space-between;
+  -ms-flex-pack: justify;
+  flex-direction: column;
+  -ms-flex-direction: column;
+  flex-wrap: wrap;
+  -ms-flex-wrap: wrap;
   margin: 15px 0px;
   max-width: 320px;
   text-align: center;
   border: 1px solid #999;
   padding: 15px;
   box-sizing: border-box;
-  display: flex;
-  justify-content: space-between;
-  flex-wrap: wrap;
   background: #f3f3f3;
-  flex-direction: column;
 }
 
 .sport__item img {
@@ -154,8 +168,11 @@ header {
 
 .sportSourcesContainer {
   display: flex;
+  display: -ms-flexbox;
   flex-wrap: wrap;
+  -ms-flex-wrap: wrap;
   justify-content: space-between;
+  -ms-flex-pack: justify;
 }
 
 .sportSourcesContainer img {
@@ -172,9 +189,13 @@ header {
 
 footer {
   display: flex;
-  justify-content: space-evenly;
+  display: -ms-flexbox;
+  justify-content: space-around;
+  -ms-flex-pack: justify;
   align-items: center;
+  -ms-flex-align: center;
   flex-wrap: wrap;
+  -ms-flex-wrap: wrap;
   min-height: 70px;
   background: #999;
   color:#fff;
