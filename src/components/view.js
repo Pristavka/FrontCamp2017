@@ -1,76 +1,80 @@
-const setCurrentDate = () => {
-  document.querySelector('.header__date').innerHTML = new Date().toLocaleString("en-US", timeOptions)
-};
+import configs from '../config/config';
+export default class View {
 
-const renderMainContent = () => {
-  const sectionNews = document.createElement('section');
-  const sectionSportList = document.createElement('section');
-  sectionNews.className ='news';
-  sectionSportList.className ='listOfsportNews';
-  sectionNews.innerHTML = `
-      <div class="news__latest latest">
-        <h1>Latest <span class="latest__mark">News</span></h1>
-        <div class="latest__itemNews"></div>
-      </div>
-      <div class="news__sport sport">
-          <h1>Sport <span class="latest__mark">News</span></h1>
-          <h3 class="latest__source">Please, choose News source</h3>
-          <div class="sportSourcesContainer"></div>
-      </div>
-    `;
-  document.querySelector('main').appendChild(sectionNews);
-  document.querySelector('main').appendChild(sectionSportList);
-}
+  setCurrentDate() {
+    document.querySelector('.header__date').innerHTML = new Date().toLocaleString("en-US", configs.timeOptions)
+  };
 
-const renderLatestNews = ({ articles: [art] }) => {
-  const news = `
-    <h3 class="latest__source">${art.author}</h3>
-    <div class="latest__img">
-      <p><a href="${art.url}" target="_blank" rel="nooponer">
-        <img src="${art.urlToImage}" alt="${art.title}">
-      </a></p>
-    </div>
-    <p class="latest__title">${art.title}</p>
-    <p class="latest__shortDescr">${art.description}</p>
-    <p class="latest__url">
-      <a href="${art.url}" target="_blank" rel="nooponer">Open original source</a>
-    </p>
-    <p class="latest__published"><b>Date of publication:</b> ${art.publishedAt}</p>
-  `
-  document.querySelector('.latest__itemNews').innerHTML = news;
-};
+  renderMainContent() {
+    const sectionNews = document.createElement('section');
+    const sectionSportList = document.createElement('section');
+    sectionNews.className = 'news';
+    sectionSportList.className = 'listOfsportNews';
+    sectionNews.innerHTML = `
+        <div class="news__latest latest">
+          <h1>Latest <span class="latest__mark">News</span></h1>
+          <div class="latest__itemNews"></div>
+        </div>
+        <div class="news__sport sport">
+            <h1>Sport <span class="latest__mark">News</span></h1>
+            <h3 class="latest__source">Please, choose News source</h3>
+            <div class="sportSourcesContainer"></div>
+        </div>
+      `;
+    document.querySelector('main').appendChild(sectionNews);
+    document.querySelector('main').appendChild(sectionSportList);
+  };
 
-const renderSportNews = ({ articles }) => {
-  const listOfsportNews = document.querySelector('.listOfsportNews');
-  listOfsportNews.innerHTML = '';
-  articles.forEach(art => {
-    const div = document.createElement('div');
-    div.className = 'sport__item';
+  renderLatestNews({ articles: [art] }) {
     const news = `
-        <img src="${art.urlToImage}" alt="${art.title}">
-        <p class="latest__title">${art.title}</p>
-        <p class="latest__url">
-          <a href="${art.url}" target="_blank" rel="nooponer">Open original source</a>
-        </p>
-      `
-    div.innerHTML = news;
-    listOfsportNews.appendChild(div);
-  })
-};
-
-const renderSportSources = ({ sources }) => {
-  const container = document.querySelector('.sportSourcesContainer');
-  container.addEventListener('click', handleSourceClick);
-  sources.forEach(src => {
-    const div = document.createElement('div');
-    const source = `
-      <div class="sourceItem">
-        <p><img src="${iconURL}?url=${src.url}&size=${iconSize}"
-          alt="${src.name}" id="${src.id}"></p>
-        <p class="sport__title">${src.name}</p>
+      <h3 class="latest__source">${art.author}</h3>
+      <div class="latest__img">
+        <p><a href="${art.url}" target="_blank" rel="nooponer">
+          <img src="${art.urlToImage}" alt="${art.title}">
+        </a></p>
       </div>
+      <p class="latest__title">${art.title}</p>
+      <p class="latest__shortDescr">${art.description}</p>
+      <p class="latest__url">
+        <a href="${art.url}" target="_blank" rel="nooponer">Open original source</a>
+      </p>
+      <p class="latest__published"><b>Date of publication:</b> ${art.publishedAt}</p>
     `
-    div.innerHTML = source;
-    container.appendChild(div);
-  })
-}
+    document.querySelector('.latest__itemNews').innerHTML = news;
+  };
+
+  renderSportNews({ articles }) {
+    const listOfsportNews = document.querySelector('.listOfsportNews');
+    listOfsportNews.innerHTML = '';
+    articles.forEach(art => {
+      const div = document.createElement('div');
+      div.className = 'sport__item';
+      const news = `
+          <img src="${art.urlToImage}" alt="${art.title}">
+          <p class="latest__title">${art.title}</p>
+          <p class="latest__url">
+            <a href="${art.url}" target="_blank" rel="nooponer">Open original source</a>
+          </p>
+        `
+      div.innerHTML = news;
+      listOfsportNews.appendChild(div);
+    })
+  };
+
+  renderSportSources({ sources }) {
+    const container = document.querySelector('.sportSourcesContainer');
+    container.addEventListener('click', handleSourceClick);
+    sources.forEach(src => {
+      const div = document.createElement('div');
+      const source = `
+        <div class="sourceItem">
+          <p><img src="${configs.iconURL}?url=${src.url}&size=${configs.iconSize}"
+            alt="${src.name}" id="${src.id}"></p>
+          <p class="sport__title">${src.name}</p>
+        </div>
+      `
+      div.innerHTML = source;
+      container.appendChild(div);
+    })
+  };
+};
