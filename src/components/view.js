@@ -1,11 +1,11 @@
 import configs from '../config/config';
 export default class View {
 
-  setCurrentDate() {
+  static setCurrentDate() {
     document.querySelector('.header__date').innerHTML = new Date().toLocaleString("en-US", configs.timeOptions)
   };
 
-  renderMainContent() {
+  static renderMainContent() {
     const sectionNews = document.createElement('section');
     const sectionSportList = document.createElement('section');
     sectionNews.className = 'news';
@@ -25,7 +25,7 @@ export default class View {
     document.querySelector('main').appendChild(sectionSportList);
   };
 
-  renderLatestNews({ articles: [art] }) {
+  static renderLatestNews({ articles: [art] }) {
     const news = `
       <h3 class="latest__source">${art.author}</h3>
       <div class="latest__img">
@@ -43,7 +43,7 @@ export default class View {
     document.querySelector('.latest__itemNews').innerHTML = news;
   };
 
-  renderSportNews({ articles }) {
+  static renderSportNews({ articles }) {
     const listOfsportNews = document.querySelector('.listOfsportNews');
     listOfsportNews.innerHTML = '';
     articles.forEach(art => {
@@ -61,7 +61,7 @@ export default class View {
     })
   };
 
-  renderSportSources({ sources }) {
+  static renderSportSources({ sources }) {
     const container = document.querySelector('.sportSourcesContainer');
     container.addEventListener('click', handleSourceClick);
     sources.forEach(src => {

@@ -1,5 +1,5 @@
 export default class Services {
-  getData(url) {
+  static getData(url) {
     fetch(url, { mode: 'cors' }).then(resp => resp.json())
   };
 };
