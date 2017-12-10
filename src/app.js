@@ -1,6 +1,6 @@
 import "babel-polyfill";
 
-import configs from './config/config';
+import { configs } from './config/config';
 import Controller from './components/controller';
 import View from './components/view';
 import './styles/style.css';

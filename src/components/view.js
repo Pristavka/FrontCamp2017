@@ -1,4 +1,5 @@
-import configs from '../config/config';
+import { configs } from '../config/config';
+import Controller from './controller'
 export default class View {
 
   static setCurrentDate() {
@@ -63,7 +64,7 @@ export default class View {
 
   static renderSportSources({ sources }) {
     const container = document.querySelector('.sportSourcesContainer');
-    container.addEventListener('click', handleSourceClick);
+    container.addEventListener('click', Controller.handleSourceClick);
     sources.forEach(src => {
       const div = document.createElement('div');
       const source = `

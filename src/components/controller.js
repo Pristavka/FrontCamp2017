@@ -1,4 +1,4 @@
-import configs from '../config/config';
+import { configs } from '../config/config';
 import Services from './services';
 import View from './view';
 
