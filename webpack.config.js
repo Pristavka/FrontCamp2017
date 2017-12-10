@@ -10,7 +10,7 @@ const paths = {
 
 module.exports = {
   devtool: 'source-map',
-  entry: ["babel-polyfill", path.join(paths.SRC, 'app.js')],
+  entry: ['whatwg-fetch', 'babel-polyfill', path.join(paths.SRC, 'app.js')],
   output: {
     path: paths.DIST,
     filename: 'app.bundle.[hash].js',
