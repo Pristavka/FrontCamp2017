@@ -2,6 +2,7 @@ const webpack = require('webpack');
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const autoprefixer = require('autoprefixer');
 
 const paths = {
   DIST: path.resolve(__dirname, 'dist'),
@@ -13,18 +14,7 @@ module.exports = {
   entry: ['whatwg-fetch', 'babel-polyfill', path.join(paths.SRC, 'app.js')],
   output: {
     path: paths.DIST,
-    filename: 'app.bundle.[hash].js',
-    publicPath: 'http://localhost:3000/'
-  },
-  devServer: {
-    port: 3000,
-    hot: true,
-    stats: {
-      colors: true
-    },
-    overlay: {
-      errors: true
-    }
+    filename: '[name].bundle.[hash].js',
   },
   plugins: [
     new webpack.HotModuleReplacementPlugin(),
@@ -43,7 +33,7 @@ module.exports = {
       {
         test: /\.s?css$/,
         loader: ExtractTextPlugin.extract({
-          use: 'css-loader',
+          use: ['css-loader', 'postcss-loader', 'sass-loader']
         })
       },
       {
@@ -56,6 +46,12 @@ module.exports = {
     ]
   },
   resolve: {
-    extensions: ['.js'],
+    mainFiles: ['app'],
+    modules: ['node_modules'],
+    extensions: ['.js', '.scss']
   },
+  resolveLoader: {
+    modules: ['node_modules', 'loaders'],
+    extensions: ['.js']
+  }
 };

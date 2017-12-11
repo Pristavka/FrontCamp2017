@@ -3,9 +3,8 @@ import "babel-polyfill";
 import { configs } from './config/config';
 import Controller from './components/controller';
 import View from './components/view';
-import './styles/style.css';
-import './assets/logo.png';
-import './assets/logo-sm.png';
+import { logo, smallLogo } from './assets/index';
+import './styles/style.scss';
 
 View.renderMainContent();
 View.setCurrentDate();

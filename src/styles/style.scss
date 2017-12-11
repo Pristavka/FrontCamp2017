@@ -71,22 +71,20 @@ header {
   text-align: center;
   color: #005fa4;
   font-size: 2em;
-}
-
-.latest__source::after {
-  content: '';
-  display: block;
-  width:50px;
-  border-bottom: 2px solid #999;
-  margin: 0 auto;
+  &::after {
+    content: '';
+    display: block;
+    width:50px;
+    border-bottom: 2px solid #999;
+    margin: 0 auto;
+  }
 }
 
 .latest__img {
-  text-align: center
-}
-
-.latest__img img {
-  width: 100%;
+  text-align: center;
+  img {
+    width: 100%;
+  }
 }
 
 .latest__title {
@@ -99,16 +97,17 @@ header {
   color: #999;
 }
 
-.latest__url a {
-  color:#fff;
-  display: inline-block;
-  text-decoration: none;
-  background: #005fa4;
-  padding:5px 15px;
-}
-
-.latest__url a:hover {
-  background: #999;
+.latest__url {
+  a {
+    color:#fff;
+    display: inline-block;
+    text-decoration: none;
+    background: #005fa4;
+    padding:5px 15px;
+    &:hover {
+      background: #999;
+    }
+  }
 }
 
 .latest__published {
@@ -119,13 +118,12 @@ header {
   max-width: 650px;
   width: 100%;
   padding:0 10px;
-}
-
-.news__sport h1 {
-  font-size:5em;
-  color: #999;
-  text-transform: uppercase;
-  text-align: center;
+  h1 {
+    font-size:5em;
+    color: #999;
+    text-transform: uppercase;
+    text-align: center;
+  }
 }
 
 .sport__title {
@@ -160,10 +158,9 @@ header {
   padding: 15px;
   box-sizing: border-box;
   background: #f3f3f3;
-}
-
-.sport__item img {
-  width:100%;
+  img {
+    width:100%;
+  }
 }
 
 .sportSourcesContainer {
@@ -173,12 +170,11 @@ header {
   -ms-flex-wrap: wrap;
   justify-content: space-between;
   -ms-flex-pack: justify;
-}
-
-.sportSourcesContainer img {
-  width: 120px;
-  height: 120px;
-  cursor: pointer;
+  img {
+    width: 120px;
+    height: 120px;
+    cursor: pointer;
+  }
 }
 
 .sourceItem {
