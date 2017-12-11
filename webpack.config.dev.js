@@ -17,14 +17,13 @@ module.exports = {
     filename: '[name].bundle.[hash].js',
   },
   devServer: {
+    host: 'localhost',
     port: 3000,
     hot: true,
-    stats: {
-      colors: true
-    },
-    overlay: {
-      errors: true
-    }
+    stats: {colors: true},
+    overlay: {errors: true},
+    lazy: true,
+    open: true
   },
   plugins: [
     new webpack.HotModuleReplacementPlugin(),
