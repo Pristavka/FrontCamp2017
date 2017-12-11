@@ -14,14 +14,16 @@ module.exports = {
   entry: ['whatwg-fetch', 'babel-polyfill', path.join(paths.SRC, 'app.js')],
   output: {
     path: paths.DIST,
-    filename: '[name].bundle.[hash].js',
+    filename: '[name].bundle.[hash].js'
   },
   devServer: {
+    contentBase: paths.SRC,
     host: 'localhost',
     port: 3000,
     hot: true,
     stats: {colors: true},
     overlay: {errors: true},
+    compress: true,
     lazy: true,
     open: true
   },
