@@ -1,11 +1,10 @@
 import { configs } from '../config/config';
 import Controller from './controller'
-export default class View {
 
+export default class View {
   static setCurrentDate() {
     document.querySelector('.header__date').innerHTML = new Date().toLocaleString("en-US", configs.timeOptions)
   };
-
   static renderMainContent() {
     const sectionNews = document.createElement('section');
     const sectionSportList = document.createElement('section');
@@ -25,9 +24,9 @@ export default class View {
       `;
     document.querySelector('main').appendChild(sectionNews);
     document.querySelector('main').appendChild(sectionSportList);
-    document.querySelector('#showButton').addEventListener('click',() => Controller.getSportSources(configs.resources.sources));
+    document.querySelector('#showButton')
+      .addEventListener('click',() => Controller.getSportSources(configs.resources.sources));
   };
-
   static renderLatestNews({ articles: [art] }) {
     const news = `
       <h3 class="latest__source">${art.author}</h3>
@@ -45,7 +44,6 @@ export default class View {
     `
     document.querySelector('.latest__itemNews').innerHTML = news;
   };
-
   static renderSportNews({ articles }) {
     const listOfsportNews = document.querySelector('.listOfsportNews');
     listOfsportNews.innerHTML = '';

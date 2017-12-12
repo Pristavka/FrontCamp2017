@@ -9,14 +9,12 @@ export default class Controller {
   static getSportNews(url) {
     Services.getData(url).then(sportNews => View.renderSportNews(sportNews))
   };
-
   static getSportSources(url) {
     Services.getData(url).then(src => { import('./renderSportNews').then(module => {
       module.default.renderSportSources(src)})
       document.querySelector('#showButton').style = 'display:none';
     })
   };
-
   static handleSourceClick(e) {
     Controller.getSportNews(`${configs.newsapi}/top-headlines?sources=${e.target.id}&apiKey=${configs.api_key}`)
   };

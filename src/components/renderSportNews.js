@@ -1,5 +1,6 @@
 import { configs } from '../config/config';
-import Controller from './controller'
+import Controller from './controller';
+
 export default class RenderSportNews {
   static renderSportSources({ sources }) {
     const container = document.querySelector('.sportSourcesContainer');

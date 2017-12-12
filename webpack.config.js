@@ -57,7 +57,13 @@ module.exports = {
       {
         test: /\.json$/,
         exclude: /node_modules/,
-        use: ['custom-loader']
+        use: [
+          {
+            loader: 'file-loader',
+            options: {name: 'data/[name].[hash].[ext]'}
+          },
+          {loader: 'custom-loader'}
+        ]
       }
     ]
   },
