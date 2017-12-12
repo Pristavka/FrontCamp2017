@@ -46,12 +46,9 @@ module.exports = {
     ]
   },
   resolve: {
-    mainFiles: ['app'],
-    modules: ['node_modules'],
     extensions: ['.js', '.scss']
   },
   resolveLoader: {
     modules: ['node_modules', 'loaders'],
-    extensions: ['.js']
   }
 };

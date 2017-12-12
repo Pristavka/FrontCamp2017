@@ -17,14 +17,12 @@ module.exports = {
     filename: '[name].bundle.[hash].js'
   },
   devServer: {
-    contentBase: paths.SRC,
     host: 'localhost',
     port: 3000,
     hot: true,
     stats: {colors: true},
     overlay: {errors: true},
     compress: true,
-    lazy: true,
     open: true
   },
   plugins: [
@@ -62,8 +60,6 @@ module.exports = {
     ]
   },
   resolve: {
-    mainFiles: ['app'],
-    modules: ['node_modules'],
     extensions: ['.js', '.scss']
   },
   resolveLoader: {
