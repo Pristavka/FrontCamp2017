@@ -38,11 +38,12 @@ module.exports = {
       },
       {
         test: /\.(jpe?g|png|gif|svg)$/i,
-        loader: 'file-loader',
+        loader: 'url-loader',
         options: {
+          limit: 1000,
           name: 'img/[name].[ext]',
-        },
-      }
+        }
+      },
     ]
   },
   resolve: {
