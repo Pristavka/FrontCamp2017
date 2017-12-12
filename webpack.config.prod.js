@@ -7,6 +7,7 @@ const autoprefixer = require('autoprefixer');
 const paths = {
   DIST: path.resolve(__dirname, 'dist'),
   SRC: path.resolve(__dirname, 'src'),
+  LOADERS: path.resolve(__dirname, 'loaders')
 };
 
 module.exports = {
@@ -44,12 +45,17 @@ module.exports = {
           name: 'img/[name].[ext]',
         }
       },
+      {
+        test: /\.json$/,
+        exclude: /node_modules/,
+        use: ['custom-loader']
+      }
     ]
   },
   resolve: {
     extensions: ['.js', '.scss']
   },
   resolveLoader: {
-    modules: ['node_modules', 'loaders'],
+    alias: {'custom-loader': path.join(paths.LOADERS, 'custom-loader.js')}
   }
 };

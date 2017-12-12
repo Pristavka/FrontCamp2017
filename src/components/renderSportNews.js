@@ -1,22 +1,6 @@
+import { configs } from '../config/config';
+import Controller from './controller'
 export default class RenderSportNews {
-  static renderSportNews({ articles }) {
-    const listOfsportNews = document.querySelector('.listOfsportNews');
-    listOfsportNews.innerHTML = '';
-    articles.forEach(art => {
-      const div = document.createElement('div');
-      div.className = 'sport__item';
-      const news = `
-              <img src="${art.urlToImage}" alt="${art.title}">
-              <p class="latest__title">${art.title}</p>
-              <p class="latest__url">
-                <a href="${art.url}" target="_blank" rel="nooponer">Open original source</a>
-              </p>
-            `
-      div.innerHTML = news;
-      listOfsportNews.appendChild(div);
-    })
-  };
-
   static renderSportSources({ sources }) {
     const container = document.querySelector('.sportSourcesContainer');
     container.addEventListener('click', Controller.handleSourceClick);

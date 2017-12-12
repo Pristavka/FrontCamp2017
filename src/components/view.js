@@ -19,11 +19,13 @@ export default class View {
         <div class="news__sport sport">
             <h1>Sport <span class="latest__mark">News</span></h1>
             <h3 class="latest__source">Please, choose News source</h3>
+            <p><button id="showButton">Show Sources</button></p>
             <div class="sportSourcesContainer"></div>
         </div>
       `;
     document.querySelector('main').appendChild(sectionNews);
     document.querySelector('main').appendChild(sectionSportList);
+    document.querySelector('#showButton').addEventListener('click',() => Controller.getSportSources(configs.resources.sources));
   };
 
   static renderLatestNews({ articles: [art] }) {
@@ -59,23 +61,6 @@ export default class View {
         `
       div.innerHTML = news;
       listOfsportNews.appendChild(div);
-    })
-  };
-
-  static renderSportSources({ sources }) {
-    const container = document.querySelector('.sportSourcesContainer');
-    container.addEventListener('click', Controller.handleSourceClick);
-    sources.forEach(src => {
-      const div = document.createElement('div');
-      const source = `
-        <div class="sourceItem">
-          <p><img src="${configs.iconURL}?url=${src.url}&size=${configs.iconSize}"
-            alt="${src.name}" id="${src.id}"></p>
-          <p class="sport__title">${src.name}</p>
-        </div>
-      `
-      div.innerHTML = source;
-      container.appendChild(div);
     })
   };
 };

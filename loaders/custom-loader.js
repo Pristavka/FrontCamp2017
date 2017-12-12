@@ -1,9 +1,8 @@
 module.exports = function (source) {
-  var src = JSON.parse(source);
-  for (var i in src){
-    if (typeof parseInt(i) === 'Number'){
-      console.log('Hello JSON')
-    }
+  let jsn = JSON.parse(source);
+  for(let index in jsn){
+    if (typeof parseInt(index) == 'number') delete jsn['index']
   }
-  return source
+
+  return `module.exports = ${JSON.stringify(jsn)}`;
 }

@@ -196,3 +196,16 @@ footer {
   background: #999;
   color:#fff;
 }
+
+#showButton {
+  display:block;
+  margin: auto;
+  background: #005fa4;
+  border: none;
+  padding: 10px 20px;
+  color: #fff;
+  cursor: pointer;
+  &:hover{
+    background: #3ba6f3;
+  }
+}

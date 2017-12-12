@@ -1,4 +1,4 @@
 {
-  "plugins": ["./plugins/plugin.js"],
+  "plugins": ["syntax-dynamic-import", "./plugins/plugin.js"],
   "presets": ["env"]
 }
