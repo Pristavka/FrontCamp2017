@@ -1,9 +1,21 @@
-const getLatestNews = url => getData(url).then(latestNews => renderLatestNews(latestNews));
-const getSportNews = url => getData(url).then(sportNews => renderSportNews(sportNews));
-const getSportSources = url => getData(url).then(src => renderSportSources(src));
-const handleSourceClick = e => getSportNews(`${newsapi}/top-headlines?sources=${e.target.id}&apiKey=${api_key}`)
+import { configs } from '../config/config';
+import Services from './services';
+import View from './view';
 
-renderMainContent();
-setCurrentDate();
-getLatestNews(resources.bbc);
-getSportSources(resources.sources);
+export default class Controller {
+  static getLatestNews(url) {
+    Services.getData(url).then(latestNews => View.renderLatestNews(latestNews))
+  };
+  static getSportNews(url) {
+    Services.getData(url).then(sportNews => View.renderSportNews(sportNews))
+  };
+  static getSportSources(url) {
+    Services.getData(url).then(src => { 
+      import('./renderSportNews').then(module => {module.default.renderSportSources(src)})
+      document.querySelector('#showButton').style = 'display:none';
+    })
+  };
+  static handleSourceClick(e) {
+    Controller.getSportNews(`${configs.newsapi}/top-headlines?sources=${e.target.id}&apiKey=${configs.api_key}`)
+  };
+};
