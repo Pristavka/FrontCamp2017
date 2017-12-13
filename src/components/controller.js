@@ -10,8 +10,8 @@ export default class Controller {
     Services.getData(url).then(sportNews => View.renderSportNews(sportNews))
   };
   static getSportSources(url) {
-    Services.getData(url).then(src => { import('./renderSportNews').then(module => {
-      module.default.renderSportSources(src)})
+    Services.getData(url).then(src => { 
+      import('./renderSportNews').then(module => {module.default.renderSportSources(src)})
       document.querySelector('#showButton').style = 'display:none';
     })
   };
