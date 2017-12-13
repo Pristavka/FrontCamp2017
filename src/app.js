@@ -1,4 +1,4 @@
-import "babel-polyfill";
+import 'babel-polyfill';
 
 import { configs } from './config/config';
 import Controller from './components/controller';
