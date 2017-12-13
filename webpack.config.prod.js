@@ -11,7 +11,6 @@ const paths = {
 };
 
 module.exports = {
-  devtool: 'source-map',
   entry: ['whatwg-fetch', 'babel-polyfill', path.join(paths.SRC, 'app.js')],
   output: {
     path: paths.DIST,
@@ -27,6 +26,19 @@ module.exports = {
   module: {
     rules: [
       {
+        test: /\.html$/,
+        exclude: /node_modules/,
+        use: [
+          {
+            loader: 'html-loader',
+            options: {
+              attrs: [':data-src'],
+              minimize: true
+            }
+          }
+        ]
+      },
+      {
         test: /\.(js)$/,
         exclude: /node_modules/,
         use: ['babel-loader']
@@ -34,7 +46,16 @@ module.exports = {
       {
         test: /\.s?css$/,
         loader: ExtractTextPlugin.extract({
-          use: ['css-loader', 'sass-loader', 'postcss-loader']
+          use: [
+            {
+              loader: 'css-loader',
+              options: {
+                minimize: true
+              }
+            },
+            {loader: 'sass-loader'},
+            {loader: 'postcss-loader'}
+          ]
         })
       },
       {

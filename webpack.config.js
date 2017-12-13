@@ -11,11 +11,11 @@ const paths = {
 };
 
 module.exports = {
-  devtool: 'eval',
+  devtool: 'source-map',
   entry: ['whatwg-fetch', 'babel-polyfill', path.join(paths.SRC, 'app.js')],
   output: {
     path: paths.DIST,
-    filename: '[name].bundle.[hash].js'
+    filename: '[name].bundle.js'
   },
   devServer: {
     host: 'localhost',
@@ -31,7 +31,7 @@ module.exports = {
     new HtmlWebpackPlugin({
       template: path.join(paths.SRC, 'index.html'),
     }),
-    new ExtractTextPlugin('style.bundle.[hash].css'),
+    new ExtractTextPlugin('style.bundle.css'),
   ],
   module: {
     rules: [
@@ -60,7 +60,7 @@ module.exports = {
         use: [
           {
             loader: 'file-loader',
-            options: {name: 'data/[name].[hash].[ext]'}
+            options: {name: 'data/[name].[ext]'}
           },
           {loader: 'custom-loader'}
         ]
