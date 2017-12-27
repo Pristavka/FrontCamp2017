@@ -2,32 +2,52 @@ import { configs } from '../config/config';
 import Controller from './controller'
 
 export default class View {
-  static setCurrentDate() {
+  constructor(){
+    this._sectionNews;
+    this._sectionSportList
+  }
+  setCurrentDate() {
     document.querySelector('.header__date').innerHTML = new Date().toLocaleString("en-US", configs.timeOptions)
   };
-  static renderMainContent() {
+  renderSectionNews(){
     const sectionNews = document.createElement('section');
-    const sectionSportList = document.createElement('section');
     sectionNews.className = 'news';
-    sectionSportList.className = 'listOfsportNews';
     sectionNews.innerHTML = `
-        <div class="news__latest latest">
-          <h1>Latest <span class="latest__mark">News</span></h1>
-          <div class="latest__itemNews"></div>
-        </div>
-        <div class="news__sport sport">
-            <h1>Sport <span class="latest__mark">News</span></h1>
-            <h3 class="latest__source">Please, choose News source</h3>
-            <p><button id="showButton">Show Sources</button></p>
-            <div class="sportSourcesContainer"></div>
-        </div>
-      `;
-    document.querySelector('main').appendChild(sectionNews);
-    document.querySelector('main').appendChild(sectionSportList);
+      <div class="news__latest latest">
+        <h1>Latest <span class="latest__mark">News</span></h1>
+        <div class="latest__itemNews"></div>
+      </div>
+      <div class="news__sport sport">
+          <h1>Sport <span class="latest__mark">News</span></h1>
+          <h3 class="latest__source">Please, choose News source</h3>
+          <p><button id="showButton">Show Sources</button></p>
+          <div class="sportSourcesContainer"></div>
+      </div>
+    `;
+    this._sectionNews = sectionNews;
+    return sectionNews;
+  }
+  renderSectionSportList(){
+    const sectionSportList = document.createElement('section');
+    sectionSportList.className = 'listOfsportNews';
+    this._sectionSportList = sectionSportList;
+    return sectionSportList;
+  }
+  getSectionNews(){
+    if (this._sectionNews) return this._sectionNews
+    return this.renderSectionNews();
+  }
+  getSectionSportList(){
+    if (this._sectionSportList) return this._sectionSportList
+    return this.renderSectionSportList();
+  }
+  renderMainContent() {
+    document.querySelector('main').appendChild(this.getSectionNews());
+    document.querySelector('main').appendChild(this.getSectionSportList());
     document.querySelector('#showButton')
       .addEventListener('click',() => Controller.getSportSources(configs.resources.sources));
   };
-  static renderLatestNews({ articles: [art] }) {
+  renderLatestNews({ articles: [art] }) {
     const news = `
       <h3 class="latest__source">${art.author}</h3>
       <div class="latest__img">
@@ -44,7 +64,7 @@ export default class View {
     `
     document.querySelector('.latest__itemNews').innerHTML = news;
   };
-  static renderSportNews({ articles }) {
+  renderSportNews({ articles }) {
     const listOfsportNews = document.querySelector('.listOfsportNews');
     listOfsportNews.innerHTML = '';
     articles.forEach(art => {

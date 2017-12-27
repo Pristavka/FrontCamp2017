@@ -7,6 +7,8 @@ import { logo, smallLogo } from './assets/index';
 import './styles/style.scss';
 import './config/mockData.json';
 
-View.renderMainContent();
-View.setCurrentDate();
+const view = new View;
+
+view.renderMainContent();
+view.setCurrentDate();
 Controller.getLatestNews(configs.resources.bbc);
