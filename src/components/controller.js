@@ -1,9 +1,9 @@
 import { configs } from '../config/config';
-import Services from './services';
+import services from './services';
 import View from './view';
 import Security from './security'
 
-const services = new Services;
+// const services = new Services;
 const view = new View;
 const security = new Security;
 

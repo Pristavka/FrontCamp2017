@@ -6,7 +6,7 @@ export default class View {
     this._sectionNews;
     this._sectionSportList
   }
-  setCurrentDate() {
+  setCurrentDate(){
     document.querySelector('.header__date').innerHTML = new Date().toLocaleString("en-US", configs.timeOptions)
   };
   renderSectionNews(){
@@ -41,7 +41,7 @@ export default class View {
     if (this._sectionSportList) return this._sectionSportList
     return this.renderSectionSportList();
   }
-  renderMainContent() {
+  renderMainContent(){
     document.querySelector('main').appendChild(this.getSectionNews());
     document.querySelector('main').appendChild(this.getSectionSportList());
     document.querySelector('#showButton')

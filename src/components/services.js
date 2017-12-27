@@ -1,5 +1,17 @@
-export default class Services {
+class GetAllData{
+  getData(url){
+    return fetch(url, { mode: 'cors' })
+  }
+}
+
+class Services {
+  constructor(GetData){
+    this.getAllData = new GetData;
+  }
   getData(url) {
-    return fetch(url, { mode: 'cors' }).then(resp => resp.json())
+    return this.getAllData.getData(url).then(resp => resp.json())
   };
 };
+
+const services = new Services(GetAllData);
+export default services;
