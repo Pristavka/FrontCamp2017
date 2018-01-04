@@ -3,7 +3,7 @@ class GetAllData{
     return fetch(url, { mode: 'cors' })
   }
 }
-
+/*Decorator pattern*/
 class Services {
   constructor(GetData){
     this.getAllData = new GetData;

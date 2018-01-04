@@ -1,10 +1,9 @@
 import { configs } from '../config/config';
 import services from './services';
 
-// const services = new Services;
-
+/*Proxy pattern*/
 export default class Security{
-  getSecurityData(url){
+  getData(url){
     const password = prompt('Enter the Password, please');
     if (password === configs.password) return services.getData(url);
     alert('You don\'t know the Password, get out from your computer!')

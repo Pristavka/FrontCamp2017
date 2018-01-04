@@ -13,5 +13,5 @@ export const configs = {
     day: 'numeric',
     weekday: 'long'
   },
-  password: 'FrontCamp2017'
+  password: '123'
 };

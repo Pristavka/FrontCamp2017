@@ -3,7 +3,6 @@ import services from './services';
 import View from './view';
 import Security from './security'
 
-// const services = new Services;
 const view = new View;
 const security = new Security;
 
@@ -15,9 +14,9 @@ export default class Controller {
     services.getData(url).then(sportNews => view.renderSportNews(sportNews))
   };
   static getSportSources(url) {
-    security.getSecurityData(url)
+    security.getData(url)
       .then(src => { 
-        import('./renderSportNews').then(module => {module.default.renderSportSources(src)})
+        import('./renderSportSources').then(module => {module.default.renderSportSources(src)})
         document.querySelector('#showButton').style = 'display:none';
       })
       .catch(e => alert(e))

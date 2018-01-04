@@ -1,6 +1,8 @@
 import { configs } from '../config/config';
 import Controller from './controller'
 
+/*Prototype pattern*/
+/*Singleton pattern*/
 export default class View {
   constructor(){
     this._sectionNews;
