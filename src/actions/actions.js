@@ -1,4 +1,4 @@
-import services from './services';
+import services from '../components/services';
 
 export const GET_SOURCES = 'GET_SOURCES';
 
@@ -8,5 +8,8 @@ const getSources = sources => ({
 });
 
 export const fetchSources = url => dispatch => {
-  services.getData(url).then(sources => dispatch(getSources(sources)));
+  services.getData(url).then(sources => {
+    console.log(sources);
+    dispatch(getSources(sources))
+  });
 }
