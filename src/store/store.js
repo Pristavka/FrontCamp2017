@@ -8,8 +8,7 @@ export const createStore = (reducer, preloadedState, enhancer) => {
 
   function dispatch(action){
     state = reducer(state, action);
-    console.log(state);
-    listeners.forEach(listener => listener());
+    listeners.forEach(listener => listener(action.sources));
     return action
   }
 

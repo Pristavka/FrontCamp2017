@@ -4,7 +4,7 @@ import View from './view';
 import Security from './security';
 import { createStore } from '../store/store';
 import { getSources } from '../reducers/reducers';
-import { fetchSources } from '../actions/actions';
+import { updateSources } from '../actions/actions';
 
 const initialState = {
   sources: {}
@@ -19,8 +19,10 @@ export default class Controller {
     services.getData(url).then(latestNews => view.renderLatestNews(latestNews))
   };
   static getSportNews(url) {
-    store.dispatch(fetchSources(url));
-    view.renderSportNews(store.getState().sources);
+    // store.dispatch(fetchSources(url));
+    // view.renderSportNews(store.getState().sources);
+    store.subscribe(view.renderSportNews())
+    services.getData(url).then(sportNews => store.dispatch(updateSources(sportNews)))
     // services.getData(url).then(sportNews => view.renderSportNews(sportNews))
   };
   static getSportSources(url) {
