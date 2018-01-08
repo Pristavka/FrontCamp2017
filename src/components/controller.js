@@ -6,6 +6,7 @@ import { createStore } from '../store/store';
 import { getSources } from '../reducers/reducers';
 import { updateSources } from '../actions/actions';
 
+/*Observer and State patterns*/
 const initialState = {
   sources: {}
 }
@@ -19,11 +20,8 @@ export default class Controller {
     services.getData(url).then(latestNews => view.renderLatestNews(latestNews))
   };
   static getSportNews(url) {
-    // store.dispatch(fetchSources(url));
-    // view.renderSportNews(store.getState().sources);
-    store.subscribe(view.renderSportNews())
+    store.subscribe(view.renderSportNews)
     services.getData(url).then(sportNews => store.dispatch(updateSources(sportNews)))
-    // services.getData(url).then(sportNews => view.renderSportNews(sportNews))
   };
   static getSportSources(url) {
     security.getData(url)

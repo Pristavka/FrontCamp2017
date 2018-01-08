@@ -13,5 +13,5 @@ export const configs = {
     day: 'numeric',
     weekday: 'long'
   },
-  password: '123'
+  password: 'epam'
 };
