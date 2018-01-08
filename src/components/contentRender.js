@@ -1,9 +1,9 @@
 import { configs } from '../config/config';
-import Controller from './controller'
+import Main from './main'
 
 /*Prototype pattern*/
 /*Singleton pattern*/
-export default class View {
+export default class ContentRender {
   constructor(){
     this._sectionNews;
     this._sectionSportList
@@ -47,7 +47,7 @@ export default class View {
     document.querySelector('main').appendChild(this.getSectionNews());
     document.querySelector('main').appendChild(this.getSectionSportList());
     document.querySelector('#showButton')
-      .addEventListener('click',() => Controller.getSportSources(configs.resources.sources));
+      .addEventListener('click',() => Main.getSportSources(configs.resources.sources));
   };
   renderLatestNews({ articles: [art] }) {
     const news = `

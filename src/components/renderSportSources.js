@@ -1,10 +1,10 @@
 import { configs } from '../config/config';
-import Controller from './controller';
+import Main from './main';
 
 export default class RenderSportNews {
   static renderSportSources({ sources }) {
     const container = document.querySelector('.sportSourcesContainer');
-    container.addEventListener('click', Controller.handleSourceClick);
+    container.addEventListener('click', Main.handleSourceClick);
     sources.forEach(src => {
       const div = document.createElement('div');
       const source = `

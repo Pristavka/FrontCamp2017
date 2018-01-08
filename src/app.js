@@ -1,14 +1,14 @@
 import 'babel-polyfill';
 
 import { configs } from './config/config';
-import Controller from './components/controller';
-import View from './components/view';
+import Main from './components/main';
+import ContentRender from './components/contentRender';
 import { logo, smallLogo } from './assets/index';
 import './styles/style.scss';
 import './config/mockData.json';
 
-const view = new View;
+const contentRender = new ContentRender;
 
-view.renderMainContent();
-view.setCurrentDate();
-Controller.getLatestNews(configs.resources.bbc);
+contentRender.renderMainContent();
+contentRender.setCurrentDate();
+Main.getLatestNews(configs.resources.bbc);

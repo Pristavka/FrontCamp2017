@@ -4,7 +4,7 @@ export const createStore = (reducer, preloadedState, enhancer) => {
   let state = preloadedState;
   let listeners = [];
   function getState(){
-    return state;
+    return Object.assign({}, state);
   }
   function dispatch(action){
     state = reducer(state, action);

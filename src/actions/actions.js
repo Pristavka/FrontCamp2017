@@ -1,5 +1,3 @@
-import services from '../components/services';
-
 export const GET_SOURCES = 'GET_SOURCES';
 
 export const updateSources = sources => ({
