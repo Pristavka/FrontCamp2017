@@ -1,6 +1,6 @@
 /*Flux/Redux implementation*/
 
-export const createStore = (reducer, preloadedState, enhancer) => {
+export const createStore = (reducer, preloadedState) => {
   let state = preloadedState;
   let listeners = [];
   function getState(){
@@ -9,14 +9,14 @@ export const createStore = (reducer, preloadedState, enhancer) => {
   function dispatch(action){
     state = reducer(state, action);
     listeners.forEach(listener => listener(action.sources));
-    return action
+    return action;
   }
   function subscribe(listener){
     listeners.push(listener);
     return function unsubscribe(){
       const index = listeners.indexOf(listener);
       listeners.splice(index, 1);
-    }
+    };
   }
-  return { getState, dispatch, subscribe }
-}
+  return { getState, dispatch, subscribe };
+};

@@ -13,9 +13,9 @@ export default class RenderSportNews {
                 alt="${src.name}" id="${src.id}"></p>
               <p class="sport__title">${src.name}</p>
             </div>
-          `
+          `;
       div.innerHTML = source;
       container.appendChild(div);
-    })
-  };
+    });
+  }
 }

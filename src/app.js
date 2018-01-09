@@ -1,5 +1,4 @@
 import 'babel-polyfill';
-
 import { configs } from './config/config';
 import Main from './components/main';
 import ContentRender from './components/contentRender';

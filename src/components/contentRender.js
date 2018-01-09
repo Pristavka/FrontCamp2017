@@ -1,16 +1,16 @@
 import { configs } from '../config/config';
-import Main from './main'
+import Main from './main';
 
 /*Prototype pattern*/
 /*Singleton pattern*/
 export default class ContentRender {
   constructor(){
     this._sectionNews;
-    this._sectionSportList
+    this._sectionSportList;
   }
   setCurrentDate(){
-    document.querySelector('.header__date').innerHTML = new Date().toLocaleString("en-US", configs.timeOptions)
-  };
+    document.querySelector('.header__date').innerHTML = new Date().toLocaleString('en-US', configs.timeOptions);
+  }
   renderSectionNews(){
     const sectionNews = document.createElement('section');
     sectionNews.className = 'news';
@@ -36,11 +36,11 @@ export default class ContentRender {
     return sectionSportList;
   }
   getSectionNews(){
-    if (this._sectionNews) return this._sectionNews
+    if (this._sectionNews) return this._sectionNews;
     return this.renderSectionNews();
   }
   getSectionSportList(){
-    if (this._sectionSportList) return this._sectionSportList
+    if (this._sectionSportList) return this._sectionSportList;
     return this.renderSectionSportList();
   }
   renderMainContent(){
@@ -48,7 +48,7 @@ export default class ContentRender {
     document.querySelector('main').appendChild(this.getSectionSportList());
     document.querySelector('#showButton')
       .addEventListener('click',() => Main.getSportSources(configs.resources.sources));
-  };
+  }
   renderLatestNews({ articles: [art] }) {
     const news = `
       <h3 class="latest__source">${art.author}</h3>
@@ -63,9 +63,9 @@ export default class ContentRender {
         <a href="${art.url}" target="_blank" rel="nooponer">Open original source</a>
       </p>
       <p class="latest__published"><b>Date of publication:</b> ${art.publishedAt}</p>
-    `
+    `;
     document.querySelector('.latest__itemNews').innerHTML = news;
-  };
+  }
   renderSportNews({ articles }) {
     const listOfsportNews = document.querySelector('.listOfsportNews');
     listOfsportNews.innerHTML = '';
@@ -78,9 +78,9 @@ export default class ContentRender {
           <p class="latest__url">
             <a href="${art.url}" target="_blank" rel="nooponer">Open original source</a>
           </p>
-        `
+        `;
       div.innerHTML = news;
       listOfsportNews.appendChild(div);
-    })
-  };
-};
+    });
+  }
+}
