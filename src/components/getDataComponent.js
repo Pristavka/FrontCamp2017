@@ -1,6 +1,11 @@
 import { configs } from '../config/config';
 
 /*Proxy and Decorator pattern*/
+class GetData{
+  getData(url){
+    return fetch(url, { mode: 'cors' });
+  }
+}
 class GetDataProxy{
   constructor(getProxy){
     this.getDataProxy = getProxy;
@@ -10,11 +15,6 @@ class GetDataProxy{
     if (password === configs.password) return this.getDataProxy.getData(url);
     alert('You don\'t know the Password, get out from your computer!');
     return Promise.reject('Or try once more =)');
-  }
-}
-class GetData{
-  getData(url){
-    return fetch(url, { mode: 'cors' });
   }
 }
 class GetDataDecorator {

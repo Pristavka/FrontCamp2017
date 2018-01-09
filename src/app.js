@@ -1,13 +1,9 @@
 import 'babel-polyfill';
+import MainComponent from './components/mainComponent';
 import { configs } from './config/config';
-import Main from './components/main';
-import ContentRender from './components/contentRender';
-import { logo, smallLogo } from './assets/index';
-import './styles/style.scss';
-import './config/mockData.json';
+// eslint-disable-next-line no-unused-vars
+import * as staticFiles from './components/staticFilesComponent';
 
-const contentRender = new ContentRender;
-
-contentRender.renderMainContent();
-contentRender.setCurrentDate();
-Main.getLatestNews(configs.resources.bbc);
+MainComponent.renderMainContent();
+MainComponent.setCurrentDate();
+MainComponent.getLatestNews(configs.resources.bbc);
