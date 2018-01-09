@@ -1,7 +1,7 @@
 import { getDataDecorator } from './getDataComponent';
 import { getDataProxy } from './getDataComponent';
 import { getSources } from '../reducer/reducer';
-import { updateSources } from '../actions/actions';
+import { updateSources, updateLatestNews } from '../actions/actions';
 import SportSourcesComponent from './sportSourcesComponent';
 import LatestNewsComponent from './latestNewsComponent';
 import SportNewsComponent from './sportNewsComponent';
@@ -9,15 +9,21 @@ import SportNewsComponent from './sportNewsComponent';
 import { createStore } from '../store/store';
 import { configs } from '../config/config';
 /*Observer, Prototype and State patterns*/
-const initialState = {sources: {}}
+const initialState = {
+  sources: { 
+    articles: []
+  },
+  latestNews: {}
+}
 const store = createStore(getSources, initialState);
 const sportNewsComponent = new SportNewsComponent;
 
-store.subscribe(sportNewsComponent.renderSportNews)
+store.subscribe(LatestNewsComponent.renderLatestNews);
+store.subscribe(sportNewsComponent.renderSportNews);
 
 export default class MainComponent {
   static getLatestNews(url) {
-    getDataDecorator.getData(url).then(latestNews => LatestNewsComponent.renderLatestNews(latestNews))
+    getDataDecorator.getData(url).then(latestNews => store.dispatch(updateLatestNews(latestNews)))
   };
   static getSportNews(url) {
     getDataDecorator.getData(url).then(sportNews => store.dispatch(updateSources(sportNews)))
@@ -34,6 +40,8 @@ export default class MainComponent {
     MainComponent.getSportNews(`${configs.newsapi}/top-headlines?sources=${e.target.id}&apiKey=${configs.api_key}`)
   };
   static renderMainContent(){
+    MainComponent.setCurrentDate();
+    MainComponent.getLatestNews(configs.resources.bbc);
     document.querySelector('main').appendChild(SportSourcesComponent.getSectionNews());
     document.querySelector('main').appendChild(sportNewsComponent.getSectionSportList());
     document.querySelector('#showButton')

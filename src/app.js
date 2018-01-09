@@ -5,5 +5,3 @@ import { configs } from './config/config';
 import * as staticFiles from './components/staticFilesComponent';
 
 MainComponent.renderMainContent();
-MainComponent.setCurrentDate();
-MainComponent.getLatestNews(configs.resources.bbc);

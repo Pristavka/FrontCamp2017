@@ -2,7 +2,7 @@ export default class SportNewsComponent {
   constructor(){
     this._sectionSportList;
   }
-  renderSportNews({ articles }) {
+  renderSportNews({ sources: { articles } }) {
     const listOfsportNews = document.querySelector('.listOfsportNews');
     listOfsportNews.innerHTML = '';
     articles.forEach(art => {

@@ -7,7 +7,7 @@ export const createStore = (reducer, preloadedState) => {
   }
   function dispatch(action){
     state = reducer(state, action);
-    listeners.forEach(listener => listener(action.sources));
+    listeners.forEach(listener => listener(state));
     return action;
   }
   function subscribe(listener){

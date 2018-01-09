@@ -1,5 +1,5 @@
 export default class LatestNewsComponent{
-  static renderLatestNews({ articles: [art] }) {
+  static renderLatestNews({ latestNews: { articles: [art] }}) {
     const news = `
     <h3 class="latest__source">${art.author}</h3>
     <div class="latest__img">
