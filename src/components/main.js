@@ -1,6 +1,6 @@
 import { configs } from '../config/config';
 import { getDataDecorator } from './getDataComponent';
-import { GetDataProxy } from './getDataComponent';
+import { getDataProxy } from './getDataComponent';
 import ContentRender from './contentRender';
 import { createStore } from '../store/store';
 import { getSources } from '../reducer/reducer';
@@ -11,9 +11,7 @@ const initialState = {
   sources: {}
 }
 const store = createStore(getSources, initialState);
-
 const contentRender = new ContentRender;
-const getDataProxy = new GetDataProxy(getDataDecorator);
 
 store.subscribe(contentRender.renderSportNews)
 

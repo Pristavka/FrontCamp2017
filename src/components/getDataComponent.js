@@ -1,7 +1,7 @@
 import { configs } from '../config/config';
 
 /*Proxy and Decorator pattern*/
-export class GetDataProxy{
+class GetDataProxy{
   constructor(getProxy){
     this.getDataProxy = getProxy;
   }
@@ -27,3 +27,4 @@ class GetDataDecorator {
 }
 
 export const getDataDecorator = new GetDataDecorator(GetData);
+export const getDataProxy = new GetDataProxy(getDataDecorator);
