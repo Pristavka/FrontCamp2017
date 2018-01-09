@@ -1,5 +1,4 @@
 /*Flux/Redux implementation*/
-
 export const createStore = (reducer, preloadedState) => {
   let state = preloadedState;
   let listeners = [];
