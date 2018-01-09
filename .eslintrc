@@ -9,13 +9,11 @@
   "parserOptions": {
     "ecmaFeatures": {
       "experimentalObjectRestSpread": true,
-      "jsx": true
+      "modules": true,
+      "classes": true
     },
     "sourceType": "module"
   },
-  "plugins": [
-    "react"
-  ],
   "rules": {
     "indent": [
       "error",
@@ -32,6 +30,14 @@
     "semi": [
       "error",
       "always"
-    ]
+    ],
+    "no-multi-str": 0,
+    "no-extra-bind": 1,
+    "no-label-var": 1,
+    "no-undef": 2,
+    "no-undefined": 0,
+    "key-spacing": 0,
+    "comma-spacing": 0,
+    "no-multi-spaces": 0
   }
 }
