@@ -15,12 +15,13 @@ const store = createStore(getSources, initialState);
 const contentRender = new ContentRender;
 const getDataProxy = new GetDataProxy;
 
+store.subscribe(contentRender.renderSportNews)
+
 export default class Main {
   static getLatestNews(url) {
     getDataDecorator.getData(url).then(latestNews => contentRender.renderLatestNews(latestNews))
   };
   static getSportNews(url) {
-    store.subscribe(contentRender.renderSportNews)
     getDataDecorator.getData(url).then(sportNews => store.dispatch(updateSources(sportNews)))
   };
   static getSportSources(url) {
