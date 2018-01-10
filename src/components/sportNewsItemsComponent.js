@@ -1,10 +1,10 @@
 import { configs } from '../config/config';
-import Controller from './controller';
+import MainComponent from './mainComponent';
 
-export default class RenderSportNews {
+export default class SportNewsItemsComponent {
   static renderSportSources({ sources }) {
     const container = document.querySelector('.sportSourcesContainer');
-    container.addEventListener('click', Controller.handleSourceClick);
+    container.addEventListener('click', MainComponent.handleSourceClick);
     sources.forEach(src => {
       const div = document.createElement('div');
       const source = `
@@ -13,9 +13,9 @@ export default class RenderSportNews {
                 alt="${src.name}" id="${src.id}"></p>
               <p class="sport__title">${src.name}</p>
             </div>
-          `
+          `;
       div.innerHTML = source;
       container.appendChild(div);
-    })
-  };
+    });
+  }
 }

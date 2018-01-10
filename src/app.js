@@ -1,12 +1,6 @@
 import 'babel-polyfill';
+import MainComponent from './components/mainComponent';
+// eslint-disable-next-line no-unused-vars
+import * as staticFiles from './components/staticFilesComponent';
 
-import { configs } from './config/config';
-import Controller from './components/controller';
-import View from './components/view';
-import { logo, smallLogo } from './assets/index';
-import './styles/style.scss';
-import './config/mockData.json';
-
-View.renderMainContent();
-View.setCurrentDate();
-Controller.getLatestNews(configs.resources.bbc);
+MainComponent.renderMainContent();
