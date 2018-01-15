@@ -1,0 +1,18 @@
+1.How many “Chinese” (cuisine) restaurants are in “Queens” (borough)?
+Query: db.restaurants.find({borough: "Queens", cuisine: "Chinese"}).count() = 728; or
+db.restaurant.find({$and: [{brough: "Queens"}, {cuisine: "Chinese""}]}).count() = 728;
+
+2.What is the _id of the restaurant which has the grade with the highest ever score?
+Query: db.restaurants.find({"grades.score": {$gt:100}}, {_id: 1}) = ObjectId("5a5c76a2c58bbaf0e39a0f05")
+
+3.Add a grade { grade: "A", score: 7, date: ISODate() }to every restaurant in “Manhattan” (borough).
+Query: db.restaurants.updateMany({borough: "Manhattan"}, {$push: {grades: {"date": ISODate(), "grade": "A", "score": 7}}});
+
+4.What are the names of the restaurants which havea grade at index 8 with score less then 7?Use projection to include only names without _id.
+Query: db.restaurants.find({"grades.8.score": {$lt: 7}}, {name: 1, _id: 0})
+1. Silver Krust West Indian Restaurant
+2. Pure Food
+
+5.What are _id and borough of “Seafood”(cuisine)restaurants  which received at least one “B” grade in period from 2014-02-01 to 2014-03-01? Use projection to include only _id and borough.
+Query: db.restaurants.find({$and:[{"grades.date": {$gt: ISODate("2014-02-01T00:00:00Z")}},{"grades.date": {$lt: ISODate("2014-03-01T00:00:00Z")}}, {"grades.grade": "B"}, {cuisine: "Seafood"}]}, {_id:1, borough: 1})
+Result: 46 restaurants
