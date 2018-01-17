@@ -5,7 +5,7 @@ db.restaurant.find({$and: [{brough: "Queens"}, {cuisine: "Chinese""}]}).count()
 Result: 728;
 
 3.2.What is the _id of the restaurant which has the grade with the highest ever score?
-Query: db.restaurants.find({"grades.score": {$gt:100}}, {_id: 1})
+Query: db.restaurants.aggregate([ {$unwind: "$grades"}, {$sort:{"grades.score": -1}}, {$limit: 1}, {$project: {"_id": 1}} ])
 Result: ObjectId("5a5c76a2c58bbaf0e39a0f05")
 
 3.3.Add a grade { grade: "A", score: 7, date: ISODate() }to every restaurant in “Manhattan” (borough).
