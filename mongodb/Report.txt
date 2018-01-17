@@ -16,9 +16,11 @@ Query: db.restaurants.find({"grades.8.score": {$lt: 7}}, {name: 1, _id: 0})
 Result: 1. Silver Krust West Indian Restaurant
 	2. Pure Food
 
-3.5.What are _id and borough of “Seafood”(cuisine)restaurants  which received at least one “B” grade in period from 2014-02-01 to 2014-03-01? Use projection to include only _id and borough.
-Query: db.restaurants.find({$and:[{"grades.date": {$gt: ISODate("2014-02-01T00:00:00Z")}},{"grades.date": {$lt: ISODate("2014-03-01T00:00:00Z")}}, {"grades.grade": "B"}, {cuisine: "Seafood"}]}, {_id:1, borough: 1})
-Result: 46 restaurants
+3.5.What are _id and borough of “Seafood”(cuisine) restaurants  which received at least one “B” grade in period from 2014-02-01 to 2014-03-01? Use projection to include only _id and borough.
+Query: db.restaurants.find({cuisine: "Seafood", grades: { $elemMatch: {date: {$gte: ISODate("2014-02-01"), $lte: ISODate("2014-03-01")}, grade: "B" }}}, {borough: 1})
+Result:
+{ "_id" : ObjectId("5a5c76a2c58bbaf0e39a4312"), "borough" : "Bronx" }
+{ "_id" : ObjectId("5a5c76a2c58bbaf0e39a458c"), "borough" : "Manhattan" }
 
 ---------------------------------
 
