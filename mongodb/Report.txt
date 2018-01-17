@@ -87,7 +87,7 @@ Result: db.restaurants.getIndexes()
 ]
 
 4.3.Create an index to make this query coveredand provide proof (from explain()or CompassUI)that it is indeed covered:db.restaurants.find({ restaurant_id: "41098650" }, { _id: 0, borough: 1 })
-Query: db.restaurants.createIndex({"restaurant_id": 1}); 
+Query: db.restaurants.createIndex({"restaurant_id": 1, "borough": 1}); 
 db.restaurants.find({restaurant_id: "41098650"}, {_id: 0, borough: 1}).explain()
 {
         "queryPlanner" : {
@@ -303,7 +303,7 @@ db.restaurants.find({borough: "Queens", cuisine: "Pizza"}).explain()
 }
 
 4.5.Create an index to make query from task 3.4 coveredand provide proof(from explain()or Compass UI)that it is indeed covered
-Query: db.restaurants.createIndex({"grades.8.score": 1})
+Query: db.restaurants.createIndex({"grades.8.score": 1, "name": 1})
 db.restaurants.find({"grades.8.score": {$lt: 7}}, {name: 1, _id: 0}).explain()
 {
         "queryPlanner" : {
