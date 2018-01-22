@@ -30,5 +30,13 @@ Result:
 ] }
 
 4. What are the carriers which flue the most number of passengers from the United State to either Greece, Italy or Spain? Find top 10 carriers, but provide the last 7 carriers (do not include the first 3). Show result as { "_id" : "<carrier>", "total" : 999}
-Query:
+Query: db.airlines.aggregate([ {$match: {originCountry: "United States", $or: [ {destCountry: {$eq: "Greece"}}, {destCountry: {$eq: "Italy"}}, {destCountry: "Spain"}  ]}  }, {$group: {_id: "$carrier", total: {$sum: "$passengers"}}}, {$sort: {total: -1}}, {$limit: 10}, {$skip: 3}])
 Result:
+{ "_id" : "Compagnia Aerea Italiana", "total" : 560512 }
+{ "_id" : "United Air Lines Inc.", "total" : 459872 }
+{ "_id" : "Emirates", "total" : 201806 }
+{ "_id" : "Air Europa", "total" : 189936 }
+{ "_id" : "Meridiana S.p.A", "total" : 40616 }
+{ "_id" : "Norwegian Air Shuttle ASA", "total" : 26688 }
+{ "_id" : "VistaJet Limited", "total" : 366 }
+
