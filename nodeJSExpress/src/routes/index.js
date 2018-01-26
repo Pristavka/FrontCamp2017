@@ -1,8 +1,10 @@
 const express = require('express');
 const router = express.Router();
 
-router.get('/', function(req, res, next) {
-  res.render('index', { title: `Main page`, message: `Welcome Friends!`});
-});
+const home = require('./home.js')
+const blogs = require('./blogs.js')
+
+router.use('/', home);
+router.use('/blogs', blogs);
 
 module.exports = router;
