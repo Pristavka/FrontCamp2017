@@ -1,5 +1,4 @@
 node_modules/
 dist-babel/
 dist/
-nodeJSExpress/logger.log
-nodeJSExpress/error.log
+*.log

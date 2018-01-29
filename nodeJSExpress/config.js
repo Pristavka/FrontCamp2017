@@ -1,5 +1,6 @@
-module.exports = configs = {
-  server: {
-    port: 3000
+module.exports = config = {
+  winston: {
+    error: 'error.log',
+    logger: 'logger.log'
   }
 };

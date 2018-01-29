@@ -3,15 +3,16 @@ const app = express();
 const path = require('path');
 const winston = require('winston');
 
-const router = require('./src/routes/index.js')
 const PORT = process.env.PORT || 8080;
+const router = require('./src/routes/index.js')
+const config = require('./config');
 
 const logger = winston.createLogger({
   format: winston.format.json(),
   transports: [
     new winston.transports.Console(),
-    new winston.transports.File({ filename: 'error.log', level: 'error' }),
-    new winston.transports.File({ filename: 'logger.log', level: 'info' })
+    new winston.transports.File({ filename: config.winston.error, level: 'error' }),
+    new winston.transports.File({ filename: config.winston.logger, level: 'info' })
   ]
 })
 
