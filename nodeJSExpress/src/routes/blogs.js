@@ -11,13 +11,13 @@ router.get('/:id', function(req, res, next) {
 });
 router.post('/', function(req, res, next) {
   blogs.push(req.body);
-  res.send(`You tried to add new list of blogs`)
+  res.statusCode(200);
 });
 router.put('/:id', function(req, res, next) {
-  res.send(`You tried to update the list of blogs`)
+  res.statusCode(204);
 });
 router.delete('/:id', function(req, res, next) {
-  res.send(`You tried to delete the ${req.params.id} blog`)
+  res.statusCode(204);
 });
 
 module.exports = router;
