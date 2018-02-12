@@ -41,16 +41,25 @@ router.post('/edit/:id', (req, res) => {
 });
 
 router.post('/add', (req, res) => {
-  const blog = new Blogs();
-  blog.author = req.body.author;
-  blog.text = req.body.text;
+  req.checkBody('author', 'Author is required').notEmpty();
+  req.checkBody('text', 'Text is required').notEmpty();
 
-  blog.save(err => {
-    if (err) return console.log(err);
+  const errors = req.validationErrors();
 
-    req.flash('success', 'Blog added!');
-    res.redirect('/blogs');
-  });
+  if (errors) {
+    res.render('addBlog', { title: 'Add new blog', errors });
+  } else {
+    const blog = new Blogs();
+    blog.author = req.body.author;
+    blog.text = req.body.text;
+
+    blog.save(err => {
+      if (err) return console.log(err);
+
+      req.flash('success', 'Blog added!');
+      res.redirect('/blogs');
+    });
+  }
 });
 
 router.delete('/delete/:id', (req, res) => {
