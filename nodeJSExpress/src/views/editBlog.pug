@@ -1,0 +1,13 @@
+extends layout
+
+block content
+  h1(style='font-size:3em;color:#6dc3d2;text-align:center') #{title}
+  form(method='POST', action=`/blogs/edit/${blog._id}`)
+    #form-group
+      label Author: 
+      input.form-control(name='author', type='text', value=blog.author)
+    #form-group   
+      label Text: 
+      textarea.form-control(name='text')= blog.text
+    br
+    input.btn.btn-primary(type='submit', value='Submit')
