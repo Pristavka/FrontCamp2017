@@ -5,9 +5,9 @@ const router = express.Router();
 
 router.get('/', (req, res) => {
   Blogs.find({}, (err, blogs) => {
-    if (err) {
-      console.log(err);
-    } else res.render('blogs', { title: 'List of blogs', blogs });
+    if (err) return console.log(err);
+
+    res.render('blogs', { title: 'List of blogs', blogs });
   });
 });
 
@@ -34,34 +34,29 @@ router.post('/edit/:id', (req, res) => {
 
   Blogs.update({_id: req.params.id}, blog, (err) => {
     if (err) return console.log(err);
+    
+    req.flash('success', 'Blog updated!');
     res.redirect('/blogs');
   });
 });
 
 router.post('/add', (req, res) => {
-  const blog = new Blogs({author: req.body.author, text: req.body.text});
+  const blog = new Blogs();
+  blog.author = req.body.author;
+  blog.text = req.body.text;
+
   blog.save(err => {
-    if (err) {
-      console.log(err);
-      return;
-    } else res.redirect('/blogs');
+    if (err) return console.log(err);
+
+    req.flash('success', 'Blog added!');
+    res.redirect('/blogs');
   });
-  // console.log(req.body.author);
-  // blog.author = req.body.author;
-  // blog.text = req.body.text;
-  // blog.save(err => {
-  //   if (err) {
-  //     console.log(err);
-  //     return;
-  //   } else {
-  //     res.redirect('/blogs');
-  //   }
-  // });
 });
 
 router.delete('/delete/:id', (req, res) => {
   Blogs.remove({_id: req.body.id}, err => {
     if (err) return console.log(err);
+
     res.redirect('/blogs');
   });
 });
