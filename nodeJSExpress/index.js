@@ -1,18 +1,20 @@
 const express = require('express');
 const path = require('path');
 const winston = require('winston');
+const passport = require('passport');
 const mongoose = require('mongoose');
 const expressValidator = require('express-validator');
 const flash = require('connect-flash');
 const session = require('express-session');
 
 const router = require('./src/routes/index.js');
-const config = require('./config');
+const config = require('./src/config/config');
+const passportConfig = require('./src/config/passport');
 
 const PORT = process.env.PORT || 8080;
 const app = express();
 
-mongoose.connect('mongodb://localhost/blogs');
+mongoose.connect(config.database);
 const db = mongoose.connection;
 
 db.once('open', () => console.log('Connected to MongoDB'));
@@ -65,6 +67,17 @@ app.use(expressValidator({
     };
   }
 }));
+
+// Passport Config
+passportConfig(passport);
+// Passport Middleware
+app.use(passport.initialize());
+app.use(passport.session());
+
+app.get('*', (req, res, next) => {
+  res.locals.user = req.user || null;
+  next();
+});
 
 app.use((req, res, next) => {
   logger.info(`The Request method is ${req.method} and path is ${req.path}`);

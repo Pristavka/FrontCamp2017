@@ -17,6 +17,14 @@ html
             a.nav-link(href='/blogs') Blogs
           li.nav-item
             a.nav-link(href='/blogs/add') Add blog
+          if user
+            li.nav-item
+              a.nav-link(href='/users/logout') Logout
+          else
+            li.nav-item
+              a.nav-link(href='/users/register') Register
+            li.nav-item
+              a.nav-link(href='/users/login') Login
     != messages('message', locals)
     if errors
       each error, i in errors
