@@ -8,7 +8,7 @@ class BlogsController extends Controller{
   }
 
   findAllBlogs(req, res, next) {
-    super.find()
+    super.find(req, res, next)
       .then(blogs => {
         res.render('blogs', { title: 'List of blogs', blogs });
         res.status(httpStatus.OK);
