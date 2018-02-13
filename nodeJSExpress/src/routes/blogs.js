@@ -5,9 +5,8 @@ const router = express.Router();
 
 router.get('/', (req, res) => {
   Blogs.find({}, (err, blogs) => {
-    if (err) return console.log(err);
-
-    res.render('blogs', { title: 'List of blogs', blogs });
+    if (err) res.status(400).json(err.message = 'We didn\'t find the Blogs');
+    else res.render('blogs', { title: 'List of blogs', blogs });
   });
 });
 
@@ -17,13 +16,15 @@ router.get('/add', (req, res) => {
 
 router.get('/:id', (req, res) => {
   Blogs.findById(req.params.id, (err, blog) => {
-    res.render('blog', { title: 'Your blog', blog });
+    if (err) res.status(400).json(err.message = `We didn't find the Blog with ID = ${req.params.id}`);
+    else res.render('blog', { title: 'Your blog', blog });
   });
 });
 
 router.get('/edit/:id', (req, res) => {
   Blogs.findById(req.params.id, (err, blog) => {
-    res.render('editBlog', { title: 'Edit blog', blog });
+    if (err) res.status(400).json(err.message = `We didn't find the Blog with ID = ${req.params.id}`);
+    else res.render('editBlog', { title: 'Edit blog', blog });
   });
 });
 
@@ -33,10 +34,11 @@ router.post('/edit/:id', (req, res) => {
   blog.text = req.body.text;
 
   Blogs.update({_id: req.params.id}, blog, (err) => {
-    if (err) return console.log(err);
-    
-    req.flash('success', 'Blog updated!');
-    res.redirect('/blogs');
+    if (err) res.status(400).json(err.message = `We didn't find the Blog with ID = ${req.params.id}`);
+    else {
+      req.flash('success', 'Blog updated!');
+      res.redirect('/blogs');
+    }
   });
 });
 
@@ -64,9 +66,8 @@ router.post('/add', (req, res) => {
 
 router.delete('/delete/:id', (req, res) => {
   Blogs.remove({_id: req.body.id}, err => {
-    if (err) return console.log(err);
-
-    res.redirect('/blogs');
+    if (err) res.status(400).json(err.message = `We didn't find the Blog with ID = ${req.params.id}`);
+    else res.redirect('/blogs');
   });
 });
 

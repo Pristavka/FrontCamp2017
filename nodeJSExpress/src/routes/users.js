@@ -41,9 +41,11 @@ router.post('/register', (req, res) => {
       });
     });
     newUser.save(err => {
-      if (err) return console.log(err);
-      req.flash('success', 'You are registered!');
-      res.redirect('/users/login');
+      if (err) res.status(400).json(err.message = 'We didn\'t save the User');
+      else {
+        req.flash('success', 'You are registered!');
+        res.redirect('/users/login');
+      }
     });
   }
 });
