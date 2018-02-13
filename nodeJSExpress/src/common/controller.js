@@ -20,6 +20,13 @@ module.exports = class Controller{
   }
 
   update(req, res, next) {
-    return this.facade.update(req.body);
+    let blog = {};
+    blog.author = req.body.author;
+    blog.text = req.body.text;
+    return this.facade.update({_id: req.params.id}, blog);
+  }
+
+  remove(req, res, next) {
+    return this.facade.remove({_id: req.params.id});
   }
 };
