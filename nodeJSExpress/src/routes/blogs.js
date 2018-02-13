@@ -1,32 +1,13 @@
 const express = require('express');
 const Blogs = require('../models/blogs');
+const BlogsController = require('../controllers/blogs.controller');
 
 const router = express.Router();
 
-router.get('/', (req, res) => {
-  Blogs.find({}, (err, blogs) => {
-    if (err) res.status(400).json(err.message = 'We didn\'t find the Blogs');
-    else res.render('blogs', { title: 'List of blogs', blogs });
-  });
-});
-
-router.get('/add', (req, res) => {
-  res.render('addBlog', { title: 'Add new blog' });
-});
-
-router.get('/:id', (req, res) => {
-  Blogs.findById(req.params.id, (err, blog) => {
-    if (err) res.status(400).json(err.message = `We didn't find the Blog with ID = ${req.params.id}`);
-    else res.render('blog', { title: 'Your blog', blog });
-  });
-});
-
-router.get('/edit/:id', (req, res) => {
-  Blogs.findById(req.params.id, (err, blog) => {
-    if (err) res.status(400).json(err.message = `We didn't find the Blog with ID = ${req.params.id}`);
-    else res.render('editBlog', { title: 'Edit blog', blog });
-  });
-});
+router.get('/', (...args) => BlogsController.findAllBlogs(...args));
+router.get('/add', (req, res) => res.render('addBlog', { title: 'Add new blog' }));
+router.get('/:id', (...args) => BlogsController.findBlogById(...args));
+router.get('/edit/:id', (...args) => BlogsController.editBlogById(...args));
 
 router.post('/edit/:id', (req, res) => {
   let blog = {};
