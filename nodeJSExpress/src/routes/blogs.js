@@ -29,7 +29,7 @@ router.post('/', (req, res) => {
 router.get('/add', (req, res) => res.render('addBlog', { title: 'Add new blog' }));
 
 router.get('/:id', (...args) => BlogsController.findBlogById(...args));
-router.post('/:id', (...args) => BlogsController.postBlog(...args));
+router.put('/:id', (...args) => BlogsController.postBlog(...args));
 router.delete('/:id', (...args) => BlogsController.removeBlog(...args));
 
 router.get('/edit/:id', (...args) => BlogsController.editBlogById(...args));
