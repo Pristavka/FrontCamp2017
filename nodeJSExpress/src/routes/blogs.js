@@ -1,23 +1,37 @@
 const express = require('express');
+const Blogs = require('../models/blogs');
+const BlogsController = require('../controllers/blogs.controller');
+
 const router = express.Router();
 
-const blogs =[];
+router.get('/', (...args) => BlogsController.findAllBlogs(...args));
+router.post('/', (req, res) => {
+  req.checkBody('author', 'Author is required').notEmpty();
+  req.checkBody('text', 'Text is required').notEmpty();
 
-router.get('/', function(req, res, next) {
-  res.render('blogs', { title: `List of blogs`, message: `Now you can see the list of blogs`});
+  const errors = req.validationErrors();
+  if (errors) {
+    res.render('addBlog', { title: 'Add new blog', errors });
+  } else {
+    const blog = new Blogs();
+    blog.author = req.body.author;
+    blog.text = req.body.text;
+
+    blog.save(err => {
+      if (err) throw(err);
+
+      req.flash('success', 'Blog added!');
+      res.redirect('/blogs');
+    });
+  }
 });
-router.get('/:id', function(req, res, next) {
-  res.render('blogs', { title: `The ${req.params.id} blog`, message: `Now you can see the ${req.params.id} blog`});
-});
-router.post('/', function(req, res, next) {
-  blogs.push(req.body);
-  res.statusCode(200);
-});
-router.put('/:id', function(req, res, next) {
-  res.statusCode(204);
-});
-router.delete('/:id', function(req, res, next) {
-  res.statusCode(204);
-});
+
+router.get('/add', (req, res) => res.render('addBlog', { title: 'Add new blog' }));
+
+router.get('/:id', (...args) => BlogsController.findBlogById(...args));
+router.put('/:id', (...args) => BlogsController.postBlog(...args));
+router.delete('/:id', (...args) => BlogsController.removeBlog(...args));
+
+router.get('/edit/:id', (...args) => BlogsController.editBlogById(...args));
 
 module.exports = router;

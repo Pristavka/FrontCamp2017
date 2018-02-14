@@ -4,13 +4,21 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "set PORT=3000 && nodemon index.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "set PORT=3000 && nodemon index.js"
   },
   "author": "Siarhei Prystauka",
   "license": "ISC",
   "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "connect-flash": "^0.1.1",
     "express": "^4.16.2",
+    "express-messages": "^1.0.1",
+    "express-session": "^1.15.6",
+    "express-validator": "^5.0.0",
+    "http-status": "^1.0.1",
+    "mongoose": "^5.0.4",
+    "passport": "^0.4.0",
+    "passport-local": "^1.0.0",
     "pug": "^2.0.0-rc.4",
     "winston": "^3.0.0-rc1"
   },

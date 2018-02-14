@@ -1,5 +1,4 @@
-html
-  head
-    title!= title
-  body(style='display:flex;align-items:center;justify-content:center')
-    h1(style='font-size:3em;color:#6dc3d2')!=message
+extends layout
+
+block content
+  h1(style='font-size:3em;color:#6dc3d2;text-align:center') #{message}

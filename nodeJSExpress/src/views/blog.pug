@@ -1,0 +1,10 @@
+extends layout
+
+block content
+  h1(style='font-size:3em;color:#6dc3d2;text-align:center') #{title}
+  div
+    h2= blog.author
+    p= blog.text
+    hr
+    a.btn.btn-secondary(href='/blogs/edit/'+blog._id) Edit blog
+    a.btn.btn-danger(href='/blogs/delete/') Delete blog
