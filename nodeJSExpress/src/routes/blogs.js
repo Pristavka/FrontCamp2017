@@ -5,12 +5,7 @@ const BlogsController = require('../controllers/blogs.controller');
 const router = express.Router();
 
 router.get('/', (...args) => BlogsController.findAllBlogs(...args));
-router.get('/blog/add', (req, res) => res.render('addBlog', { title: 'Add new blog' }));
-router.get('/blog/:id', (...args) => BlogsController.findBlogById(...args));
-router.get('/blog/edit/:id', (...args) => BlogsController.editBlogById(...args));
-
-router.put('/blog/edit/:id', (...args) => BlogsController.postBlog(...args));
-router.post('/blog/add', (req, res) => {
+router.post('/', (req, res) => {
   req.checkBody('author', 'Author is required').notEmpty();
   req.checkBody('text', 'Text is required').notEmpty();
 
@@ -31,6 +26,12 @@ router.post('/blog/add', (req, res) => {
   }
 });
 
-router.delete('/blog/delete/:id', (...args) => BlogsController.removeBlog(...args));
+router.get('/add', (req, res) => res.render('addBlog', { title: 'Add new blog' }));
+
+router.get('/:id', (...args) => BlogsController.findBlogById(...args));
+router.post('/:id', (...args) => BlogsController.postBlog(...args));
+router.delete('/:id', (...args) => BlogsController.removeBlog(...args));
+
+router.get('/edit/:id', (...args) => BlogsController.editBlogById(...args));
 
 module.exports = router;

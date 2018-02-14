@@ -5,11 +5,11 @@ const Users = require('../models/users');
 
 const router = express.Router();
 
-router.get('/user/register', (req, res) => {
+router.get('/register', (req, res) => {
   res.render('register', { title: 'Register' });
 });
 
-router.post('/user/register', (req, res) => {
+router.post('/register', (req, res) => {
   const name = req.body.name;
   const email = req.body.email;
   const username = req.body.username;
@@ -50,19 +50,19 @@ router.post('/user/register', (req, res) => {
   }
 });
 
-router.get('/user/login', (req, res) => {
+router.get('/login', (req, res) => {
   res.render('login');
 });
 
-router.post('/user/login', (req, res, next) => {
+router.post('/login', (req, res, next) => {
   passport.authenticate('local', {
     successRedirect: '/',
-    failureRedirect: '/users/user/login',
+    failureRedirect: '/users/login',
     failureFlash: true
   })(req, res, next);
 });
 
-router.get('/user/logout', (req, res) => {
+router.get('/logout', (req, res) => {
   req.logout();
   req.flash('success', 'You are logged out');
   res.redirect('/users/login');
