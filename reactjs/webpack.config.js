@@ -42,7 +42,16 @@ module.exports = {
       {
         test: /\.s?css$/,
         loader: ExtractTextPlugin.extract({
-          use: ['css-loader', 'sass-loader', 'postcss-loader']
+          use: [
+            {
+              loader: 'css-loader',
+              options: {
+                modules: true
+              }
+            },
+            {loader: 'sass-loader'},
+            {loader: 'postcss-loader'}
+          ]
         })
       }
     ]
