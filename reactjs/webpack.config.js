@@ -1,43 +1,31 @@
 const webpack = require('webpack');
 const path = require('path');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const autoprefixer = require('autoprefixer');
 
 const paths = {
   DIST: path.resolve(__dirname, 'dist'),
-  SRC: path.resolve(__dirname, 'src')
+  frontSRC: path.resolve(__dirname, 'src/FE'),
+  backSRC: path.resolve(__dirname, 'src/BE')
 };
 
-module.exports = {
+const frontConfig = {
   devtool: 'source-map',
-  entry: ['whatwg-fetch', 'babel-polyfill', path.join(paths.SRC, 'index.js')],
+  entry: path.join(paths.frontSRC, 'index.js'),
   output: {
     path: paths.DIST,
-    filename: '[name].bundle.js'
-  },
-  devServer: {
-    host: 'localhost',
-    port: 3000,
-    hot: true,
-    stats: {colors: true},
-    overlay: {errors: true},
-    compress: true,
-    open: true
+    filename: './public/[name].bundle.js'
   },
   plugins: [
-    new webpack.HotModuleReplacementPlugin(),
-    new HtmlWebpackPlugin({
-      template: path.join(paths.SRC, 'index.html'),
-    }),
-    new ExtractTextPlugin('style.bundle.css'),
+    new ExtractTextPlugin('./public/style.bundle.css'),
   ],
   module: {
     rules: [
       {
         test: /\.(js)$/,
         exclude: /node_modules/,
-        use: ['babel-loader']
+        use: ['babel-loader'],
+        query: { presets: ["env", "react", "stage-0"]}
       },
       {
         test: /\.s?css$/,
@@ -50,7 +38,12 @@ module.exports = {
               }
             },
             {loader: 'sass-loader'},
-            {loader: 'postcss-loader'}
+            {
+              loader: 'postcss-loader',
+              options: {
+                plugins: [autoprefixer()]
+              }
+            }
           ]
         })
       }
@@ -60,3 +53,37 @@ module.exports = {
     extensions: ['.js', '.scss']
   }
 };
+
+const backConfig = {
+  entry: path.join(paths.backSRC, 'index.js'),
+  target: 'node',
+  output: {
+    path: paths.DIST,
+    filename: 'server.js',
+    libraryTarget: 'commonjs'
+  },
+  module: {
+    rules: [
+      {
+        test: /\.(js)$/,
+        exclude: /node_modules/,
+        use: ['babel-loader'],
+        query: { presets: ["env", "react", "stage-0"]}
+      },
+      {
+        test: /\.s?css$/,
+        use: [
+          {
+            loader: 'css-loader/locals'
+          },
+          {loader: 'sass-loader'}
+        ]
+      }
+    ]
+  },
+  resolve: {
+    extensions: ['.js', '.scss']
+  }
+};
+
+module.exports = [frontConfig, backConfig];
