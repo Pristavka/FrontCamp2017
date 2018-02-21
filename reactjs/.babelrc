@@ -1,3 +1,4 @@
 {
-  "presets": ["env", "react", "stage-0"]
+  "presets": ["react-app", "env", "react"],
+  "plugins": ["syntax-dynamic-import", "transform-react-jsx"]
 }
