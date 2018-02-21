@@ -1,29 +1,19 @@
 const webpack = require('webpack');
-const path = require('path');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const autoprefixer = require('autoprefixer');
 
-const paths = {
-  PUBLIC: path.resolve(__dirname, 'public'),
-  frontSRC: path.resolve(__dirname, 'src/FE'),
-  backSRC: path.resolve(__dirname, 'src/BE')
-};
-
 const frontConfig = {
-  entry: path.join(paths.frontSRC, 'index.js'),
+  entry: './src/FE/index.js',
   output: {
-    path: paths.PUBLIC,
-    filename: './[name].bundle.js'
+    path: __dirname,
+    filename: './public/bundle.js'
   },
-  plugins: [
-    new ExtractTextPlugin('./css/style.bundle.css'),
-  ],
   module: {
     rules: [
       {
         test: /\.(js)$/,
         exclude: /node_modules/,
-        use: ['babel-loader'],
+        loader: 'babel-loader',
       },
       {
         test: /\.s?css$/,
@@ -47,18 +37,20 @@ const frontConfig = {
       }
     ]
   },
-  resolve: {
-    extensions: ['.js', '.scss']
-  }
+  plugins: [
+    new ExtractTextPlugin({
+      filename: 'public/css/[name].bundle.css'
+    })
+  ]
 };
 
 const backConfig = {
-  entry: path.join(paths.backSRC, 'index.js'),
+  entry: './src/BE/index.js',
   target: 'node',
   output: {
-    path: paths.PUBLIC,
+    path: __dirname,
     filename: 'server.js',
-    libraryTarget: 'commonjs'
+    libraryTarget: 'commonjs2'
   },
   module: {
     rules: [
@@ -73,13 +65,12 @@ const backConfig = {
           {
             loader: 'css-loader/locals'
           },
-          {loader: 'sass-loader'}
+          {
+            loader: 'sass-loader'
+          }
         ]
       }
     ]
-  },
-  resolve: {
-    extensions: ['.js', '.scss']
   }
 };
 

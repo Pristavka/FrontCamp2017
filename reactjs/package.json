@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "set PORT=3000 && webpack && nodemon ./public/server.js",
+    "start": "set PORT=3000 && set NODE_ENV=development&& webpack && node server.js",
     "dev": "webpack-dev-server"
   },
   "author": "Siarhei Prystauka",
@@ -16,6 +16,7 @@
     "babel-plugin-transform-class-properties": "^6.24.1",
     "babel-preset-env": "^1.6.1",
     "babel-preset-react": "^6.24.1",
+    "babel-preset-react-app": "^3.1.1",
     "css-loader": "^0.28.9",
     "extract-text-webpack-plugin": "^3.0.2",
     "html-loader": "^0.5.5",
