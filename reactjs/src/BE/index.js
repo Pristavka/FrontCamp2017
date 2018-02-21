@@ -1,10 +1,12 @@
-const express = require('express');
-const path = require('path');
+import express from 'express';
+import path from 'path';
 
-const handleRender = require('./renderTemplate');
+import handleRender from './renderTemplate';
 
 const PORT = process.env.PORT || 8080;
 const app = express();
+
+app.set('view engine', 'html');
 
 app.use(express.json());
 app.use(express.static(path.join(__dirname, 'src/public')));
