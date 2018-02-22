@@ -1,14 +1,11 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 
 import styles from '../../assets/menu.scss';
 import Link from '../link/link';
 
 const links = ['Show all posts', 'Add post']
 
-const renderSlogan = () => (
-  <div className={styles.slogan}>Blogs Portal</div>
-);
+const renderSlogan = () => <div className={styles.slogan}>Blogs Portal</div>;
 
 const renderLinks = (props) => (
   <React.Fragment>
