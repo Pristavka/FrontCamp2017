@@ -5,6 +5,7 @@ import Header from '../header/header';
 import Footer from '../footer/footer';
 import AddPost from '../addPost/addPost';
 import PostList from '../postsList/postsList';
+import Message from '../message/massage';
 
 import { config } from '../../config/config';
 import { mockPosts } from '../../mockdata/mockPosts';
@@ -33,18 +34,11 @@ export default class Main extends React.Component {
     setTimeout(() => this.setState({ showSuccess: false }), 5000);
   }
 
-  renderMessage = () => {(
-      <div className={styles.successMsg}>
-          {config.messages.success}
-      </div>
-    )
-  }
-
   render() {
     return (
       <React.Fragment>
         <Header showComponent={this.showComponent}/>
-        {this.state.showSuccess ? this.renderMessage() : null}
+        {this.state.showSuccess ? <Message /> : null}
         <div className={styles.wrapper}>
           <div className={styles.content}>
             {(() => {
