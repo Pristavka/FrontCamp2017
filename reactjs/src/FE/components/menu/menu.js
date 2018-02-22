@@ -6,31 +6,26 @@ import Link from '../link/link';
 
 const links = ['Show all posts', 'Add post']
 
-export default class Menu extends React.Component {
-  static propTypes = {
-    showComponent: PropTypes.func
-  }
+const renderSlogan = () => (
+  <div className={styles.slogan}>Blogs Portal</div>
+);
 
-  renderSlogan = () => (
-    <div className={styles.slogan}>Blogs Portal</div>
-  );
-
-  renderLinks = () => (
+const renderLinks = (props) => (
   <React.Fragment>
-    {links.map(txt => (<Link label={txt} key={txt} showComponent={this.props.showComponent}/>))}
+    {links.map(txt => (<Link label={txt} key={txt} showComponent={props.showComponent}/>))}
   </React.Fragment>
   );
 
+const Menu = (props) => {
+    const slogan = renderSlogan();
+    const navigation = renderLinks(props);
 
-
-  render() {
-    const slogan = this.renderSlogan();
-    const navigation = this.renderLinks();
     return (
       <React.Fragment>
         {slogan}
         {navigation}
       </React.Fragment>
     )
-  }
-}
+};
+
+export default Menu;

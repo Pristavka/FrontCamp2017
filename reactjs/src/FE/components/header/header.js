@@ -3,16 +3,12 @@ import React from 'react';
 import styles from '../../assets/header.scss';
 import Menu from '../menu/menu';
 
-export default class Header extends React.Component {
+const renderHeader = (props) => (
+  <header className={styles.header}>
+    <Menu {...props}/>
+  </header>
+);
 
-  renderHeader = () => (
-    <header className={styles.header}>
-      <Menu {...this.props}/>
-    </header>
-  );
+const Header = (props) => renderHeader(props);
 
-  render() {
-    const header = this.renderHeader();
-    return header
-  };
-}
+export default Header;

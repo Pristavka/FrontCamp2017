@@ -17,34 +17,23 @@ export default class Main extends React.Component {
       posts: mockPosts,
       showSuccess: false
     };
-    this.showComponent = this.showComponent.bind(this);
-    this.filterPosts = this.filterPosts.bind(this);
-    this.addPosts = this.addPosts.bind(this);
-    this.showMessage = this.showMessage.bind(this);
-    this.renderMessage = this.renderMessage.bind(this);
   }
 
-  showComponent(component) {
-    this.setState({ showComponent: component });
-  };
+  showComponent = (component) => this.setState({ showComponent: component });
+  filterPosts = (posts) => this.setState({ posts });
 
-  filterPosts(posts) {
-    this.setState({ posts });
-  }
-
-  addPosts(post) {
+  addPosts = (post) => {
     let posts = this.state.posts;
     posts.push(post);
     this.setState({ posts });
   }
 
-  showMessage() {
+  showMessage = () => {
     this.setState({ showSuccess: true});
     setTimeout(() => this.setState({ showSuccess: false }), 5000);
   }
 
-  renderMessage() {
-    return (
+  renderMessage = () => {(
       <div className={styles.successMsg}>
           {config.messages.success}
       </div>
@@ -76,4 +65,4 @@ export default class Main extends React.Component {
       </React.Fragment>
     )
   }
-}
+};

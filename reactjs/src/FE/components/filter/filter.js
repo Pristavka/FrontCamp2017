@@ -1,28 +1,18 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 
 import styles from '../../assets/filter.scss';
 
-export default class Filter extends React.Component {
-  static propTypes = {
-    posts: PropTypes.arrayOf(PropTypes.shape()),
-    filterPosts: PropTypes.func
-  };
+const filterPosts = (props) => {
+  let sortpost = props.posts;
 
-  filterPosts = () => {
-    let sortpost = this.props.posts;
+  sortpost.sort((a,b) => {
+    if (a.author > b.author) return 1;
+    if (a.author < b.author) return -1;
+    return 0;
+  })
+  props.filterPosts(sortpost);
+};
 
-    sortpost.sort((a,b) => {
-      if (a.author > b.author) return 1;
-      if (a.author < b.author) return -1;
-      return 0;
-    })
-    this.props.filterPosts(sortpost);
-  }
+const Filter = (props) => <button onClick={() => filterPosts(props)} className={styles.button}>Filter by author</button>;
 
-  render() {
-    return (
-      <button onClick={this.filterPosts} className={styles.button}>Filter by author</button>
-    )
-  }
-}
+export default Filter;

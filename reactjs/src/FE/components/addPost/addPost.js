@@ -17,16 +17,11 @@ export default class AddPost extends React.Component {
       author: '',
       post: ''
     };
-
-    this.handleChange = this.handleChange.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
   }
 
-  handleChange(e) {
-    this.setState({ [e.target.name]: e.target.value});
-  }
+  handleChange = (e) => this.setState({ [e.target.name]: e.target.value});
 
-  handleSubmit(e) {
+  handleSubmit = (e) => {
     e.preventDefault();
     const post = {
       'id': Date.now(),
@@ -36,7 +31,7 @@ export default class AddPost extends React.Component {
     this.props.addPosts(post);
     this.props.showComponent(config.pages.postsList);
     this.props.showMessage();
-  }
+  };
 
   render() {
     return (
@@ -55,5 +50,5 @@ export default class AddPost extends React.Component {
         </form>
       </div>
     )
-  }
-}
+  };
+};
