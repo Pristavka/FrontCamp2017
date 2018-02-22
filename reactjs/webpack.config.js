@@ -1,4 +1,3 @@
-const webpack = require('webpack');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const autoprefixer = require('autoprefixer');
 
@@ -22,7 +21,9 @@ const frontConfig = {
             {
               loader: 'css-loader',
               options: {
-                modules: true
+                modules: true,
+                importLoaders: 2,
+                localIdentName: '[local]'
               }
             },
             {loader: 'sass-loader'},
@@ -63,12 +64,17 @@ const backConfig = {
         test: /\.s?css$/,
         use: [
           {
-            loader: 'css-loader/locals'
+            loader: 'css-loader/locals',
+            options: {
+              modules: true,
+              importLoaders: 1,
+              localIdentName: '[local]',
+            },
           },
           {
-            loader: 'sass-loader'
-          }
-        ]
+            loader: 'sass-loader',
+          },
+        ],
       }
     ]
   }
