@@ -16,12 +16,13 @@ export default class Main extends React.Component {
     this.state = {
       showComponent: config.pages.postsList,
       posts: mockPosts,
-      showSuccess: false
+      showSuccess: false,
+      postsafterSort: null
     };
   }
 
   showComponent = (component) => this.setState({ showComponent: component });
-  filterPosts = (posts) => this.setState({ posts });
+  sortPosts = (postsafterSort) => this.setState({ postsafterSort });
 
   addPosts = (post) => {
     let posts = this.state.posts;
@@ -44,8 +45,12 @@ export default class Main extends React.Component {
             {(() => {
               switch (this.state.showComponent) {
               case config.pages.postsList: return <PostList
-                posts={this.state.posts}
-                filterPosts={this.filterPosts}
+                posts={
+                  this.state.postsafterSort ?
+                  this.state.postsafterSort :
+                  this.state.posts
+                }
+                sortPosts={this.sortPosts}
               />;
               case config.pages.addPost: return <AddPost
                 addPosts={this.addPosts}

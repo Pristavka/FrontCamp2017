@@ -2,7 +2,7 @@ import React from 'react';
 
 import styles from '../../assets/postsList.scss';
 import Post from '../post/post';
-import Filter from '../filter/filter';
+import Sorting from '../sorting/sorting';
 
 const renderPosts = (posts) => (
   <React.Fragment>
@@ -15,7 +15,7 @@ const PostsList = (props) => {
 
   return (
     <React.Fragment>
-      <Filter {...props}/>
+      <Sorting {...props}/>
       <h1 className={styles.title}>This is the List fo all Blogs</h1>
       {posts}
     </React.Fragment>
