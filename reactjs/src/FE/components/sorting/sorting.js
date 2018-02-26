@@ -3,7 +3,7 @@ import React from 'react';
 import styles from '../../assets/sorting.scss';
 
 const sortPosts = (props) => {
-  let sortpost = props.posts;
+  let sortpost = props.posts.slice(0);
 
   sortpost.sort((a,b) => {
     if (a.author > b.author) return 1;
