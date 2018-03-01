@@ -1,4 +1,4 @@
-module.exports = class Controller{
+export default class Controller {
   constructor(facade) {
     this.facade = facade;
   }
@@ -29,4 +29,4 @@ module.exports = class Controller{
   remove(req, res, next) {
     return this.facade.remove({_id: req.params.id});
   }
-};
+}

@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import styles from '../../assets/addPosts.scss';
-import { config } from '../../config/config';
+import config from '../../config/config';
 
 export default class AddPost extends React.Component {
   static propTypes = {

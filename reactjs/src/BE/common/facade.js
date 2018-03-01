@@ -1,4 +1,4 @@
-module.exports = class Facade {
+export default class Facade {
   constructor (Schema) {
     this.Schema = Schema;
   }
@@ -21,4 +21,4 @@ module.exports = class Facade {
   remove(...args) {
     return this.Schema.remove(...args).exec();
   }
-};
+}

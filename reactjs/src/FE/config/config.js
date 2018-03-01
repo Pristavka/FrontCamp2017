@@ -1,4 +1,4 @@
-export const config = {
+export default {
   pages: {
     postsList: 'show all posts',
     addPost: 'add post'

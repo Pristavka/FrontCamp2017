@@ -7,7 +7,7 @@ export default class Post extends React.Component {
   renderPost = (props) => (
     <div className={styles.post}>
       <h2 className={styles.post__name}>{props.post.author}</h2>
-      <div className={styles.post__description}>{props.post.description}</div>
+      <div className={styles.post__description}>{props.post.text}</div>
     </div>
   )
   render() {

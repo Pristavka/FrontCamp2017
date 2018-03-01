@@ -7,7 +7,7 @@ import AddPost from '../addPost/addPost';
 import PostList from '../postsList/postsList';
 import Message from '../message/massage';
 
-import { config } from '../../config/config';
+import config from '../../config/config';
 import { mockPosts } from '../../mockdata/mockPosts';
 
 export default class Main extends React.Component {
