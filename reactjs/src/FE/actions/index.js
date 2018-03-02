@@ -1,4 +1,3 @@
-import api from '../api';
 import { FETCH_POSTS, ADD_POSTS, REMOVE_POSTS } from '../config/constants';
 
 const fetchPosts = (posts) => ({
@@ -15,7 +14,7 @@ const removePosts = () => ({
   shouldConfirm: true
 });
 
-const fetchAllPosts = () => dispatch => api.fetchPosts()
+const fetchAllPosts = () => (dispatch, getState, api) => api.fetchPosts()
   .then(posts => dispatch(fetchPosts(posts)));
 
 export default {

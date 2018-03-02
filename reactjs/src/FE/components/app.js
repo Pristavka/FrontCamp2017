@@ -11,7 +11,7 @@ class App extends React.Component {
   }
 
   render() {
-    return <Main posts={props.posts}/>;
+    return <Main posts={this.props.posts}/>;
   }
 }
 

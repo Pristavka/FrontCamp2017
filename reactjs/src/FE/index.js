@@ -5,6 +5,7 @@ import ReactDOM from 'react-dom';
 // Redux
 import { createStore, applyMiddleware } from 'redux';
 import { Provider } from 'react-redux';
+import thunk from 'redux-thunk';
 import reducer from './reducers';
 
 import App from './components/app';
@@ -26,7 +27,7 @@ const confirmationMiddleware = store => next => action => {
 
 const store = createStore(
   reducer,
-  applyMiddleware(loggerMiddleware, confirmationMiddleware)
+  applyMiddleware(thunk.withExtraArgument(api), loggerMiddleware, confirmationMiddleware)
 );
 
 ReactDOM.hydrate(
