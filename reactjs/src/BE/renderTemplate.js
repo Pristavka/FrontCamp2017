@@ -22,9 +22,6 @@ const renderPage = (html) => {
   `;
 };
 
-const handleRender = (req, res) => {
-  PostsController.findAllPosts(req, res)
-    .then(posts => res.send(renderPage(renderToString(<App posts={posts}/>))))
-};
+const handleRender = posts => renderPage(renderToString(<App posts={posts}/>));
 
 export default handleRender;

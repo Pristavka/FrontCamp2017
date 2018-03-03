@@ -1,8 +1,11 @@
 import express from 'express';
+// import path from 'path';
 import winston from 'winston';
 import passport from 'passport';
 import mongoose from 'mongoose';
 import session from 'express-session';
+import { fetchAllPosts } from '../api';
+
 import handleRender from './renderTemplate';
 
 // import router from './routes/index.js';
@@ -28,7 +31,7 @@ const logger = winston.createLogger({
 });
 
 // app.set('views', path.join(__dirname, 'src/views'));
-// app.set('view engine', 'pug');
+app.set('view engine', 'html');
 
 app.use(express.json());
 app.use(express.static('public'));
@@ -57,16 +60,51 @@ app.use((req, res, next) => {
   next();
 });
 
-app.get('*', handleRender);
+app.get('/api/posts', (req, res) => {
+  res.json([
+    {
+      'id': 1,
+      'author': 'Siarhei',
+      'text': 'This is the main post in all my life!'
+    },
+    {
+      'id': 2,
+      'author': 'Aleksandra',
+      'text': 'I think about it, but it is not possible!'
+    },
+    {
+      'id': 3,
+      'author': 'Valera',
+      'text': 'I want to buy a new car'
+    },
+    {
+      'id': 4,
+      'author': 'Ekaterina',
+      'text': 'Good job man!'
+    },
+    {
+      'id': 5,
+      'author': 'Dasha',
+      'text': 'Do you speak Spanish?'
+    }
+  ]);
+});
+
+app.get('*', (req, res) => {
+  fetchAllPosts(config.getAllPostsURL)
+    .then(posts => {
+      res.send(handleRender(posts));
+    });
+});
 // app.use(router);
 
-app.use(function(req, res, next) {
+app.use((req, res, next) => {
   const err = new Error('Not Found');
   err.status = 404;
   next(err);
 });
 
-app.use(function(err, req, res, next) {
+app.use((err, req, res, next) => {
   res.locals.message = err.message;
   res.locals.error = req.app.get('env') === 'development' ? err : {};
 
