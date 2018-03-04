@@ -10,12 +10,24 @@ import '../assets/global.scss';
 //   { fetchAllPosts }
 // )
 export default class App extends React.Component {
+  constructor(props) {
+    super(props);
+    let initialPosts;
 
+    if(props.posts) {
+      initialPosts = props.posts;
+    } else {
+      initialPosts = window.__initialPosts__;
+      delete window.__initialPosts__;
+    }
+
+    this.state = { posts: initialPosts }
+  }
   // componentDidMount() {
   //   this.props.fetchAllPosts();
   // }
 
   render() {
-    return <Main posts={this.props.posts}/>;
+    return <Main posts={this.state.posts}/>;
   }
 };

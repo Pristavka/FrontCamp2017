@@ -76,16 +76,6 @@ app.get('/api/posts', (req, res) => {
       'id': 3,
       'author': 'Valera',
       'text': 'I want to buy a new car'
-    },
-    {
-      'id': 4,
-      'author': 'Ekaterina',
-      'text': 'Good job man!'
-    },
-    {
-      'id': 5,
-      'author': 'Dasha',
-      'text': 'Do you speak Spanish?'
     }
   ]);
 });
@@ -93,7 +83,7 @@ app.get('/api/posts', (req, res) => {
 app.get('*', (req, res) => {
   fetchAllPosts(config.getAllPostsURL)
     .then(posts => {
-      res.send(handleRender(posts));
+      res.send(handleRender(posts.data));
     });
 });
 // app.use(router);

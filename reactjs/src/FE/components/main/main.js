@@ -8,23 +8,22 @@ import PostList from '../postsList/postsList';
 import Message from '../message/massage';
 
 import config from '../../config/config';
-import { mockPosts } from '../../mockdata/mockPosts';
 
 export default class Main extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       showComponent: config.pages.postsList,
-      posts: mockPosts,
+      posts: props.posts,
       showSuccess: false,
       postsafterSort: null
     };
   }
 
-  showComponent = (component) => this.setState({ showComponent: component });
-  sortPosts = (postsafterSort) => this.setState({ postsafterSort });
+  showComponent = component => this.setState({ showComponent: component });
+  sortPosts = postsafterSort => this.setState({ postsafterSort });
 
-  addPosts = (post) => {
+  addPosts = post => {
     let posts = this.state.posts;
     posts.push(post);
     this.setState({ posts });
