@@ -4,11 +4,11 @@ import winston from 'winston';
 import passport from 'passport';
 import mongoose from 'mongoose';
 import session from 'express-session';
-import { fetchAllPosts } from '../api';
+import cors from 'cors';
 
 import handleRender from './renderTemplate';
 
-// import router from './routes/index.js';
+import router from './routes';
 import config from '../configs/config';
 import passportConfig from '../configs/passport';
 
@@ -33,6 +33,7 @@ const logger = winston.createLogger({
 // app.set('views', path.join(__dirname, 'src/views'));
 app.set('view engine', 'html');
 
+app.use(cors());
 app.use(express.json());
 app.use(express.static('public'));
 
@@ -60,33 +61,8 @@ app.use((req, res, next) => {
   next();
 });
 
-app.get('/api/posts', (req, res) => {
-  res.json([
-    {
-      'id': 1,
-      'author': 'Siarhei',
-      'text': 'This is the main post in all my life!'
-    },
-    {
-      'id': 2,
-      'author': 'Aleksandra',
-      'text': 'I think about it, but it is not possible!'
-    },
-    {
-      'id': 3,
-      'author': 'Valera',
-      'text': 'I want to buy a new car'
-    }
-  ]);
-});
-
-app.get('*', (req, res) => {
-  fetchAllPosts(config.getAllPostsURL)
-    .then(posts => {
-      res.send(handleRender(posts.data));
-    });
-});
-// app.use(router);
+app.use(router);
+app.get('*', handleRender);
 
 app.use((req, res, next) => {
   const err = new Error('Not Found');

@@ -8,11 +8,8 @@ class PostsController extends Controller {
   }
 
   findAllPosts(req, res, next) {
-    return super.find(req, res, next);
-    // .then(blogs => {
-    //   res.status(httpStatus.OK);
-    //   res.render('blogs', { title: 'List of blogs', blogs });
-    // });
+    return super.find(req, res, next)
+      .then(data => data);
   }
 
   findPostById(req, res, next) {

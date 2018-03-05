@@ -1,6 +1,7 @@
 import 'babel-polyfill';
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { BrowserRouter } from 'react-router-dom';
 
 // Redux
 // import { createStore, applyMiddleware } from 'redux';
@@ -32,7 +33,9 @@ import App from './components/app';
 
 ReactDOM.hydrate(
   //<Provider store={store}>
-    <App />,
+  <BrowserRouter>
+    <App />
+  </BrowserRouter>,
   //</Provider>,
   document.getElementById('root')
 );

@@ -1,12 +1,9 @@
-const express = require('express');
+import express from 'express';
+import posts from'./posts.js';
+
 const router = express.Router();
 
-const home = require('./home.js');
-const blogs = require('./blogs.js');
-const users = require('./users.js');
+router.use('/api/posts', posts);
+// router.use('/users', users);
 
-router.use('/', home);
-router.use('/blogs', blogs);
-router.use('/users', users);
-
-module.exports = router;
+export default router;

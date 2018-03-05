@@ -6,7 +6,7 @@ import Sorting from '../sorting/sorting';
 
 const renderPosts = (posts) => (
   <React.Fragment>
-    {posts.map(post => (<Post post={post} key={post.id} />))}
+    {posts.map(post => (<Post post={post} key={post._id} />))}
   </React.Fragment>
 )
 

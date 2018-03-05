@@ -2,64 +2,57 @@ import React from 'react';
 
 import styles from '../../assets/main.scss';
 import Header from '../header/header';
-import Footer from '../footer/footer';
 import AddPost from '../addPost/addPost';
 import PostList from '../postsList/postsList';
-import Message from '../message/massage';
 
-import config from '../../config/config';
+import { fetchAllPosts } from '../../../api';
+import config from '../../../configs/config';
 
 export default class Main extends React.Component {
   constructor(props) {
     super(props);
+    let initialData;
+
+    if(props.staticContext) {
+      initialData = props.staticContext.initialData;
+    } else {
+      initialData = window.__initialData__;
+      delete window.__initialData__;
+    }
+
     this.state = {
-      showComponent: config.pages.postsList,
-      posts: props.posts,
-      showSuccess: false,
-      postsafterSort: null
-    };
+      posts: initialData,
+      postsafterSort: null,
+    }
+  };
+
+  componentDidMount() {
+    if(!this.state.posts) Main.requestInitialData()
+      .then(posts => this.setState({ posts: posts.data }))
   }
 
-  showComponent = component => this.setState({ showComponent: component });
+  static requestInitialData() {
+    return fetchAllPosts(config.getAllPostsURL);
+  };
+
   sortPosts = postsafterSort => this.setState({ postsafterSort });
-
-  addPosts = post => {
-    let posts = this.state.posts;
-    posts.push(post);
-    this.setState({ posts });
-  }
-
-  showMessage = () => {
-    this.setState({ showSuccess: true});
-    setTimeout(() => this.setState({ showSuccess: false }), 5000);
-  }
 
   render() {
     return (
       <React.Fragment>
-        <Header showComponent={this.showComponent}/>
-        {this.state.showSuccess ? <Message /> : null}
+        <Header/>
         <div className={styles.wrapper}>
           <div className={styles.content}>
-            {(() => {
-              switch (this.state.showComponent) {
-              case config.pages.postsList: return <PostList
+            <PostList
                 posts={
                   this.state.postsafterSort ?
                   this.state.postsafterSort :
                   this.state.posts
                 }
                 sortPosts={this.sortPosts}
-              />;
-              case config.pages.addPost: return <AddPost
-                addPosts={this.addPosts}
-                showComponent={this.showComponent}
-                showMessage={this.showMessage}
-              />;
-            }})()}
+              />
           </div>
         </div>
-        <Footer showComponent={this.showComponent}/>
       </React.Fragment>
     )
   }

@@ -1,5 +1,5 @@
-import Main from './main';
-import AddPost from './addPost';
+import Main from './main/main';
+import AddPost from './addPost/addPost';
 
 const routes = [
   {

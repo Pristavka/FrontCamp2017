@@ -1,4 +1,4 @@
-import { FETCH_POSTS, ADD_POSTS, REMOVE_POSTS } from '../config/constants';
+import { FETCH_POSTS, ADD_POSTS, REMOVE_POSTS } from '../constants';
 
 const fetchPosts = (posts) => ({
   type: FETCH_POSTS,
