@@ -1,4 +1,9 @@
 import axios from 'axios';
 
-export const fetchAllPosts = url => axios.get(url);
-export const addPosts = (url, body) => axios.post(url, body);
+const fetchAllPosts = url => axios.get(url);
+const addPosts = (url, body) => axios.post(url, body);
+
+export default {
+  fetchAllPosts,
+  addPosts
+};

@@ -4,38 +4,43 @@ import ReactDOM from 'react-dom';
 import { BrowserRouter } from 'react-router-dom';
 
 // Redux
-// import { createStore, applyMiddleware } from 'redux';
-// import { Provider } from 'react-redux';
-// import thunk from 'redux-thunk';
-// import reducer from './reducers';
-
+import { createStore, applyMiddleware } from 'redux';
+import { Provider } from 'react-redux';
+import thunk from 'redux-thunk';
+import reducer from './reducers';
+import api from '../api';
 import App from './components/app';
 
-// const loggerMiddleware = store => next => action => {
-//   console.log(`Dispatching: ${action}`);
-//   next(action);
-// }
+const preloadedState = window.__PRELOADED_STATE__;
 
-// const confirmationMiddleware = store => next => action => {
-//   if (action.shouldConfirm) {
-//     if (confirm('Are you sure, you want to delete this post?')) {
-//       next(action);
-//     }
-//   } else {
-//     next(action);
-//   }
-// }
+delete window.__PRELOADED_STATE__;
 
-// const store = createStore(
-//   reducer,
-//   applyMiddleware(thunk.withExtraArgument(api), loggerMiddleware, confirmationMiddleware)
-// );
+const loggerMiddleware = store => next => action => {
+  console.log(`Dispatching: ${action}`);
+  next(action);
+}
+
+const confirmationMiddleware = store => next => action => {
+  if (action.shouldConfirm) {
+    if (confirm('Are you sure, you want to add this post?')) {
+      next(action);
+    }
+  } else {
+    next(action);
+  }
+}
+
+const store = createStore(
+  reducer,
+  window.__PRELOADED_STATE__,
+  applyMiddleware(thunk.withExtraArgument(api), loggerMiddleware, confirmationMiddleware)
+);
 
 ReactDOM.hydrate(
-  //<Provider store={store}>
-  <BrowserRouter>
-    <App />
-  </BrowserRouter>,
-  //</Provider>,
+  <Provider store={store}>
+    <BrowserRouter>
+      <App />
+    </BrowserRouter>
+  </Provider>,
   document.getElementById('root')
 );

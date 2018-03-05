@@ -1,13 +1,9 @@
-const express = require('express');
-const bcrypt = require('bcryptjs');
-const passport = require('passport');
-const Users = require('../models/users');
+import express from 'express';
+import bcrypt from 'bcryptjs';
+import passport from 'passport';
+import Users from '../models/users';
 
 const router = express.Router();
-
-router.get('/register', (req, res) => {
-  res.render('register', { title: 'Register' });
-});
 
 router.post('/register', (req, res) => {
   const name = req.body.name;
@@ -15,57 +11,36 @@ router.post('/register', (req, res) => {
   const username = req.body.username;
   const password = req.body.password;
   const password2 = req.body.password2;
+  
+  let newUser = new Users({
+    name,
+    email,
+    username,
+    password
+  });
 
-  req.checkBody('name', 'Name is required').notEmpte();
-  req.checkBody('email', 'Email is required').notEmpte();
-  req.checkBody('email', 'Email is not valid').isEmail();
-  req.checkBody('username', 'Username is required').notEmpte();
-  req.checkBody('password', 'Password is required').notEmpte();
-  req.checkBody('password2', 'Passwords do not match').equals(req.body.password);
-
-  let errors = req.validationErrors();
-
-  if (errors) {
-    res.render('register', { errors });
-  } else {
-    let newUser = new Users({
-      name,
-      email,
-      username,
-      password
+  bcrypt.genSalt(10, (err, salt) => {
+    bcrypt.hash(newUser.password, salt, (err, hash) => {
+      newUser.password = hash;
     });
+  });
 
-    bcrypt.genSalt(10, (err, salt) => {
-      bcrypt.hash(newUser.password, salt, (err, hash) => {
-        newUser.password = hash;
-      });
-    });
-    newUser.save(err => {
-      if (err) res.status(400).json(err.message = 'We didn\'t save the User');
-      else {
-        req.flash('success', 'You are registered!');
-        res.redirect('/users/login');
-      }
-    });
-  }
-});
-
-router.get('/login', (req, res) => {
-  res.render('login');
+  newUser.save(err => {
+    if (err) res.status(400).json(err.message = 'We didn\'t save the User');
+    else res.redirect('/');
+  });
 });
 
 router.post('/login', (req, res, next) => {
   passport.authenticate('local', {
     successRedirect: '/',
-    failureRedirect: '/users/login',
-    failureFlash: true
+    failureRedirect: '/users/login'
   })(req, res, next);
 });
 
 router.get('/logout', (req, res) => {
   req.logout();
-  req.flash('success', 'You are logged out');
-  res.redirect('/users/login');
+  res.redirect('/');
 });
 
-module.exports = router;
+export default router;
