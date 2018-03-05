@@ -15,7 +15,7 @@ router.post('/', (req, res) => {
   post.save(err => {
     if (err) throw err;
 
-    res.redirect('/');
+    res.sendStatus(200);
   });
 });
 

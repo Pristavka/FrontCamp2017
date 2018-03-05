@@ -4,6 +4,9 @@ import Header from '../header/header';
 import Message from '../message/massage';
 import styles from '../../assets/addPosts.scss';
 
+import { addPosts } from '../../../api';
+import config from '../../../configs/config';
+
 export default class AddPost extends React.Component {
 
   constructor(props) {
@@ -22,17 +25,11 @@ export default class AddPost extends React.Component {
     const post = {
       'id': Date.now(),
       'author': this.state.author,
-      'description': this.state.post
+      'text': this.state.post
     }
-    this.addPosts(post);
+    addPosts(config.addPostsURL, post);
     this.showMessage();
   };
-
-  addPosts = post => {
-    let posts = this.state.posts;
-    posts.push(post);
-    this.setState({ posts });
-  }
 
   showMessage = () => {
     this.setState({ showSuccess: true});
