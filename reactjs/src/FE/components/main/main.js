@@ -1,39 +1,37 @@
 import React from 'react';
+import { connect } from 'react-redux';
 
 import styles from '../../assets/main.scss';
 import Header from '../header/header';
 import AddPost from '../addPost/addPost';
 import PostList from '../postsList/postsList';
-
-import { fetchAllPosts } from '../../../api';
+import { requestInitialData } from '../../actions';
 import config from '../../../configs/config';
 
+@connect(
+  state => ({ posts: state.posts }),
+  //dispatch => ({ requestInitialData })
+)
 export default class Main extends React.Component {
+  static requestInitialData() {
+    return requestInitialData(config.getAllPostsURL);
+  };
+
   constructor(props) {
     super(props);
-    let initialData;
-
-    if(props.staticContext) {
-      initialData = props.staticContext.initialData;
-    } else {
-      initialData = window.__initialData__;
-      delete window.__initialData__;
-    }
-
+    
     this.state = {
-      posts: initialData,
+      posts: props.posts,
       postsafterSort: null,
     }
   };
 
   componentDidMount() {
     if(!this.state.posts) Main.requestInitialData()
-      .then(posts => this.setState({ posts: posts.data }))
+      .then(posts => {
+        this.setState({ posts: posts.data })
+      })
   }
-
-  static requestInitialData() {
-    return fetchAllPosts(config.getAllPostsURL);
-  };
 
   sortPosts = postsafterSort => this.setState({ postsafterSort });
 

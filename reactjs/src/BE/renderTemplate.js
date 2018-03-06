@@ -32,38 +32,32 @@ const renderPage = (html, preloadedState) => {
 
 const handleRender = (req, res) => {
   const store = createStore(reducer);
-  const preloadedState = store.getState();
+  const promises = routes.reduce((acc, route) => {
+    if(matchPath(req.url, route) && route.component.WrappedComponent.requestInitialData) {
+      acc.push(Promise.resolve(route.component.WrappedComponent.requestInitialData()));
+    }
+    return acc;
+  }, []);
 
-  res.send(
-    renderPage(
-      renderToString(
-        <Provider store={store}>
-          <StaticRouter location={req.url} context={context}>
-            <App />
-          </StaticRouter>
-        </Provider>
-      ),
-      preloadedState
-    )
-  );
+  Promise.all(promises)
+    .then(() => {
+      const context = {};
+      const preloadedState = store.getState();
+
+      res.send(
+        renderPage(
+          renderToString(
+            <Provider store={store}>
+              <StaticRouter location={req.url} context={context}>
+                <App />
+              </StaticRouter>
+            </Provider>
+          ),
+          preloadedState
+        )
+      );
+    })
+    .catch(e => console.log(`Promise error: ${e}`))
 };
-
-// const currentRoute = routes.find(route => matchPath(req.url, route));
-// const requestInitialData =
-//   currentRoute.component.requestInitialData && currentRoute.component.requestInitialData();
-// Promise.resolve(requestInitialData)
-//   .then(initialData => {
-//     const context = { initialData: initialData.data };
-
-//     res.send(renderPage(
-//     renderToString(
-//       <Provider store={store}>
-//         <StaticRouter location={req.url} context={context}>
-//           <App />
-//         </StaticRouter>
-//       </Provider>
-//     ),
-//     initialData.data))
-// });
 
 export default handleRender;

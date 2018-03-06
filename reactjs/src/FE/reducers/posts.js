@@ -1,8 +1,15 @@
-import { FETCH_POSTS, ADD_POSTS, REMOVE_POSTS } from '../config/constants';
+import { FETCH_POSTS, ADD_POSTS } from '../constants';
 
-export const posts = (state = [], action) => {
+const initialState = {
+  posts: []
+};
+
+const posts = (state = initialState, action) => {
   switch (action.type) {
-  case FETCH_POSTS: return [...state, action.posts];
+  case FETCH_POSTS: return { ...state, posts: action.posts };
+  case ADD_POSTS: return {...state, posts: [...posts, action.posts] };
   default: return state;
   }
 };
+
+export default posts;
