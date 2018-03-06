@@ -12,35 +12,10 @@ class PostsController extends Controller {
       .then(data => data);
   }
 
-  findPostById(req, res, next) {
-    super.findById(req, res, next)
-      .then(blog => {
-        res.status(httpStatus.OK);
-        res.render('blog', { title: 'Your blog', blog });
-      });
-  }
-
-  editPostById(req, res, next) {
-    super.findById(req, res, next)
-      .then(blog => {
-        res.status(httpStatus.OK);
-        res.render('editBlog', { title: 'Edit blog', blog });
-      });
-  }
-
   addPost(req, res, next) {
     super.update(req, res, next)
       .then(() => {
-        res.status(httpStatus.OK);
-        res.redirect('/blogs');
-      });
-  }
-
-  removePost(req, res, next) {
-    super.remove(req, res, next)
-      .then(() => {
-        res.status(httpStatus.OK);
-        res.redirect('/blogs');
+        res.sendStatus(httpStatus.OK);
       });
   }
 }
