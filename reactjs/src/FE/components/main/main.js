@@ -5,17 +5,8 @@ import styles from '../../assets/main.scss';
 import Header from '../header/header';
 import AddPost from '../addPost/addPost';
 import PostList from '../postsList/postsList';
-import { requestInitialData } from '../../actions';
-import config from '../../../configs/config';
 
-@connect(
-  state => ({ posts: state.posts }),
-  //dispatch => ({ requestInitialData })
-)
-export default class Main extends React.Component {
-  static requestInitialData() {
-    return requestInitialData(config.getAllPostsURL);
-  };
+class Main extends React.Component {
 
   constructor(props) {
     super(props);
@@ -26,12 +17,12 @@ export default class Main extends React.Component {
     }
   };
 
-  componentDidMount() {
-    if(!this.state.posts) Main.requestInitialData()
-      .then(posts => {
-        this.setState({ posts: posts.data })
-      })
-  }
+  // componentDidMount() {
+  //   if(!this.state.posts) Main.requestInitialData()
+  //     .then(posts => {
+  //       this.setState({ posts: posts.data })
+  //     })
+  // }
 
   sortPosts = postsafterSort => this.setState({ postsafterSort });
 
@@ -55,3 +46,8 @@ export default class Main extends React.Component {
     )
   }
 };
+
+export default connect(
+  state => ({ posts: state.posts }),
+  //dispatch => ({ requestInitialData })
+)(Main);

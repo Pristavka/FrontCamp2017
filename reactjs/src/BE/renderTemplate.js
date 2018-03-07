@@ -32,15 +32,20 @@ const renderPage = (html, preloadedState) => {
 
 const handleRender = (req, res) => {
   const store = createStore(reducer);
-  const promises = routes.reduce((acc, route) => {
-    if(matchPath(req.url, route) && route.component.WrappedComponent.requestInitialData) {
-      acc.push(Promise.resolve(route.component.WrappedComponent.requestInitialData()));
-    }
-    return acc;
-  }, []);
 
-  Promise.all(promises)
-    .then(() => {
+  const activeRoute = routes.find(route => matchPath(req.url, route)) || {}
+
+  activeRoute.fetchInitialData ? activeRoute.fetchInitialData() : null;
+    
+  // routes.reduce((acc, route) => {
+  //   if(matchPath(req.url, route) && route.component.WrappedComponent.requestInitialData) {
+  //     acc.push(Promise.resolve(route.component.WrappedComponent.requestInitialData()));
+  //   }
+  //   return acc;
+  // }, []);
+
+  // Promise.all(promises)
+  //   .then(() => {
       const context = {};
       const preloadedState = store.getState();
 
@@ -56,8 +61,8 @@ const handleRender = (req, res) => {
           preloadedState
         )
       );
-    })
-    .catch(e => console.log(`Promise error: ${e}`))
+    // })
+    // .catch(e => console.log(`Promise error: ${e}`))
 };
 
 export default handleRender;

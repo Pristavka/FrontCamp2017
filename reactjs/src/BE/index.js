@@ -31,7 +31,7 @@ const logger = winston.createLogger({
 });
 
 // app.set('views', path.join(__dirname, 'src/views'));
-app.set('view engine', 'html');
+// app.set('view engine', 'html');
 
 app.use(cors());
 app.use(express.json());
