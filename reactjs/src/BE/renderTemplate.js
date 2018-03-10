@@ -1,15 +1,15 @@
 import React from 'react';
-import { renderToString } from 'react-dom/server';
-import { StaticRouter, matchPath } from 'react-router-dom';
-import serialize from 'serialize-javascript';
+import { renderToString } from "react-dom/server";
+import { StaticRouter, matchPath } from "react-router-dom";
+import serialize from "serialize-javascript";
 
 //Redux
-import { createStore } from 'redux';
-import { Provider } from 'react-redux';
-import reducer from '../FE/reducers';
+import { createStore } from "redux";
+import { Provider } from "react-redux";
+import reducer from "../FE/reducers";
 
-import App from '../FE/components/app';
-import routes from '../FE/components/routes';
+import App from "../FE/components/app";
+import routes from "../FE/components/routes";
 
 const renderPage = (html, preloadedState) => {
   return `
@@ -30,22 +30,16 @@ const renderPage = (html, preloadedState) => {
   `;
 };
 
-const handleRender = (req, res) => {
+const handleRender = (req, res, next) => {
   const store = createStore(reducer);
+  const activeRoute = routes.find(route => matchPath(req.url, route));
 
-  const activeRoute = routes.find(route => matchPath(req.url, route)) || {}
+  const promise = activeRoute.component.WrappedComponent.fetchInitialData
+    ? activeRoute.component.WrappedComponent.fetchInitialData(store)
+    : Promise.resolve();
 
-  activeRoute.fetchInitialData ? activeRoute.fetchInitialData() : null;
-    
-  // routes.reduce((acc, route) => {
-  //   if(matchPath(req.url, route) && route.component.WrappedComponent.requestInitialData) {
-  //     acc.push(Promise.resolve(route.component.WrappedComponent.requestInitialData()));
-  //   }
-  //   return acc;
-  // }, []);
-
-  // Promise.all(promises)
-  //   .then(() => {
+  promise
+    .then(data => {
       const context = {};
       const preloadedState = store.getState();
 
@@ -61,8 +55,8 @@ const handleRender = (req, res) => {
           preloadedState
         )
       );
-    // })
-    // .catch(e => console.log(`Promise error: ${e}`))
+    })
+    .catch(next);
 };
 
 export default handleRender;

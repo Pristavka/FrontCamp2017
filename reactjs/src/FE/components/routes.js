@@ -1,6 +1,6 @@
 import Main from './main/main';
 import AddPost from './addPost/addPost';
-import { fetchInitialData } from '../actions';
+import { fetchAllPosts } from '../actions';
 import config from '../../configs/config';
 
 const routes = [
@@ -8,7 +8,7 @@ const routes = [
     path: '/',
     component: Main,
     exact: true,
-    fetchInitialData: () => fetchInitialData(config.getAllPostsURL)
+    fetchInitialData: (store) => store.dispatch(fetchAllPosts(config.getAllPostsURL))
   },
   {
     path: '/addpost',
