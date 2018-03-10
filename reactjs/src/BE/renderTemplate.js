@@ -1,15 +1,15 @@
 import React from 'react';
-import { renderToString } from "react-dom/server";
-import { StaticRouter, matchPath } from "react-router-dom";
-import serialize from "serialize-javascript";
+import { renderToString } from 'react-dom/server';
+import { StaticRouter, matchPath } from 'react-router-dom';
+import serialize from 'serialize-javascript';
 
 //Redux
-import { createStore } from "redux";
-import { Provider } from "react-redux";
-import reducer from "../FE/reducers";
+import { createStore } from 'redux';
+import { Provider } from 'react-redux';
+import reducer from '../FE/reducers';
 
-import App from "../FE/components/app";
-import routes from "../FE/components/routes";
+import App from '../FE/components/app';
+import routes from '../FE/components/routes';
 
 const renderPage = (html, preloadedState) => {
   return `
@@ -34,8 +34,8 @@ const handleRender = (req, res, next) => {
   const store = createStore(reducer);
   const activeRoute = routes.find(route => matchPath(req.url, route));
 
-  const promise = activeRoute.component.WrappedComponent.fetchInitialData
-    ? activeRoute.component.WrappedComponent.fetchInitialData(store)
+  const promise = activeRoute.fetchInitialData
+    ? activeRoute.fetchInitialData(store)
     : Promise.resolve();
 
   promise
