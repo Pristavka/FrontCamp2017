@@ -1,10 +1,10 @@
 import React from 'react';
-import { PostsList } from './postsList';
+import Sorting from './sorting';
 
-it('Should render a PostsList', () => {
+it('Should render a Sorting', () => {
 
   const props = {
-    fetchAllPosts: jest.fn(),
+    sortPosts: jest.fn(),
     posts: [{
       '_id': 12354347,
       'author': 'Siarhei',
@@ -12,7 +12,7 @@ it('Should render a PostsList', () => {
     }]
   }
 
-  const wrapper = shallow(<PostsList {...props}/>);
+  const wrapper = shallow(<Sorting {...props}/>);
   expect(wrapper).toMatchSnapshot();
 });
 

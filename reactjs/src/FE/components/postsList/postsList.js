@@ -11,7 +11,7 @@ const renderPosts = (posts) => (
   </React.Fragment>
 )
 
-class PostsList extends React.Component {
+export class PostsList extends React.Component {
   constructor(props) {
     super(props);
     this.state = { posts: props.posts }

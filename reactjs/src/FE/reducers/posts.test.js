@@ -8,8 +8,8 @@ describe('Posts reducer', () => {
   }];
 
   const singlePost = {
-    'author': 'Siarhei',
-    'text': 'Hello World!'
+    'author': 'Valera',
+    'text': 'Hello Siarhei!'
   };
 
   it('Should handle initial state', () => {
@@ -29,13 +29,22 @@ describe('Posts reducer', () => {
   });
 
   it('Should handle ADD_POSTS', () => {
-    expect(posts({ posts: [] }, {
+    expect(posts({ posts: [
+      {
+        'author': 'Siarhei',
+        'text': 'Hello World!'
+      }
+    ] }, {
       type: 'ADD_POSTS',
       posts: singlePost
     })).toEqual({ posts: [
       {
         'author': 'Siarhei',
         'text': 'Hello World!'
+      },
+      {
+        'author': 'Valera',
+        'text': 'Hello Siarhei!'
       }
     ] });
   });

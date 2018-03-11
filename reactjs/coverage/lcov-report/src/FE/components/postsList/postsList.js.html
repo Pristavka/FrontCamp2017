@@ -20,31 +20,31 @@
     </h1>
     <div class='clearfix'>
       <div class='fl pad1y space-right2'>
-        <span class="strong">7.69% </span>
+        <span class="strong">61.54% </span>
         <span class="quiet">Statements</span>
-        <span class='fraction'>1/13</span>
+        <span class='fraction'>8/13</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">0% </span>
+        <span class="strong">50% </span>
         <span class="quiet">Branches</span>
-        <span class='fraction'>0/2</span>
+        <span class='fraction'>1/2</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">0% </span>
+        <span class="strong">55.56% </span>
         <span class="quiet">Functions</span>
-        <span class='fraction'>0/9</span>
+        <span class='fraction'>5/9</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">9.09% </span>
+        <span class="strong">72.73% </span>
         <span class="quiet">Lines</span>
-        <span class='fraction'>1/11</span>
+        <span class='fraction'>8/11</span>
       </div>
     </div>
     <p class="quiet">
       Press <em>n</em> or <em>j</em> to go to the next uncovered block, <em>b</em>, <em>p</em> or <em>k</em> for the previous block.
     </p>
   </div>
-  <div class='status-line low'></div>
+  <div class='status-line medium'></div>
 <pre><table class="coverage">
 <tr><td class="line-count quiet"><a name='L1'></a><a href='#L1'>1</a>
 <a name='L2'></a><a href='#L2'>2</a>
@@ -98,26 +98,26 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -141,27 +141,27 @@ import Post from '../post/post';
 import Sorting from '../sorting/sorting';
 import config from '../../../configs/config';
 &nbsp;
-const renderPosts = <span class="fstat-no" title="function not covered" >(p</span>osts) =&gt; (
-<span class="cstat-no" title="statement not covered" >  &lt;React.Fragment&gt;</span>
-    {posts.map(<span class="fstat-no" title="function not covered" >po</span>st =&gt; (<span class="cstat-no" title="statement not covered" >&lt;Post post={post} key={post._id} /&gt;)</span>)}
+const renderPosts = (posts) =&gt; (
+  &lt;React.Fragment&gt;
+    {posts.map(post =&gt; (&lt;Post post={post} key={post._id} /&gt;))}
   &lt;/React.Fragment&gt;
 )
 &nbsp;
-class PostsList extends React.Component {
-<span class="fstat-no" title="function not covered" >  co</span>nstructor(props) {
-<span class="cstat-no" title="statement not covered" >    super(props);</span>
-<span class="cstat-no" title="statement not covered" >    this.state = { posts: props.posts }</span>
+export class PostsList extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = { posts: props.posts }
   }
 &nbsp;
-<span class="fstat-no" title="function not covered" >  co</span>mponentDidMount() {
-<span class="cstat-no" title="statement not covered" >    if(!this.state.posts) <span class="cstat-no" title="statement not covered" >this.props.fetchAllPosts(config.getAllPostsURL)</span></span>
+  componentDidMount() {
+    <span class="missing-if-branch" title="if path not taken" >I</span>if(!this.state.posts) <span class="cstat-no" title="statement not covered" >this.props.fetchAllPosts(config.getAllPostsURL)</span>
   }
 &nbsp;
   sortPosts = <span class="fstat-no" title="function not covered" >so</span>rtedPosts =&gt; <span class="cstat-no" title="statement not covered" >this.setState(<span class="fstat-no" title="function not covered" >so</span>rtedPosts =&gt; (<span class="cstat-no" title="statement not covered" >{ posts: sortedPosts })</span>)</span>
 &nbsp;
-<span class="fstat-no" title="function not covered" >  re</span>nder() {
-    const posts = <span class="cstat-no" title="statement not covered" >renderPosts(this.state.posts);</span>
-<span class="cstat-no" title="statement not covered" >    return (</span>
+  render() {
+    const posts = renderPosts(this.state.posts);
+    return (
       &lt;React.Fragment&gt;
         &lt;Sorting
           posts={this.state.posts}
@@ -184,7 +184,7 @@ export default connect(
 </div><!-- /wrapper -->
 <div class='footer quiet pad2 space-top1 center small'>
   Code coverage
-  generated by <a href="https://istanbul.js.org/" target="_blank">istanbul</a> at Sun Mar 11 2018 11:19:59 GMT+0300 (RTZ 2 (зима))
+  generated by <a href="https://istanbul.js.org/" target="_blank">istanbul</a> at Sun Mar 11 2018 20:31:24 GMT+0300 (RTZ 2 (зима))
 </div>
 </div>
 <script src="..\..\..\..\prettify.js"></script>
