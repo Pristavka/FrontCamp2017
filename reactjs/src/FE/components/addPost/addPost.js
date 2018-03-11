@@ -23,7 +23,6 @@ export default class AddPost extends React.Component {
   handleSubmit = (e) => {
     e.preventDefault();
     const post = {
-      'id': Date.now(),
       'author': this.state.author,
       'text': this.state.post
     }
