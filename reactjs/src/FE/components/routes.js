@@ -8,7 +8,7 @@ const routes = [
     path: '/',
     component: Main,
     exact: true,
-    fetchInitialData: (store) => store.dispatch(fetchAllPosts(config.getAllPostsURL))
+    fetchInitialData: store => store.dispatch(fetchAllPosts(config.getAllPostsURL))
   },
   {
     path: '/addpost',

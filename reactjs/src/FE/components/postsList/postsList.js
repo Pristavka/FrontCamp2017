@@ -21,7 +21,7 @@ class PostsList extends React.Component {
     if(!this.state.posts) this.props.fetchAllPosts(config.getAllPostsURL)
   }
 
-  sortPosts = sortedPosts => this.setState((sortedPosts) => ({ posts: sortedPosts }))
+  sortPosts = sortedPosts => this.setState(sortedPosts => ({ posts: sortedPosts }))
 
   render() {
     const posts = renderPosts(this.state.posts);
