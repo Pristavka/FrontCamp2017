@@ -4,10 +4,8 @@ import { StaticRouter, matchPath } from 'react-router-dom';
 import serialize from 'serialize-javascript';
 
 //Redux
-import { createStore } from 'redux';
 import { Provider } from 'react-redux';
-import reducer from '../FE/reducers';
-
+import configureStore from '../FE/store/configureStore';
 import App from '../FE/components/app';
 import routes from '../FE/components/routes';
 
@@ -31,7 +29,7 @@ const renderPage = (html, preloadedState) => {
 };
 
 const handleRender = (req, res, next) => {
-  const store = createStore(reducer);
+  const store = configureStore();
   const activeRoute = routes.find(route => matchPath(req.url, route));
 
   const promise = activeRoute.fetchInitialData
@@ -41,20 +39,15 @@ const handleRender = (req, res, next) => {
   promise
     .then(data => {
       const context = {};
-      const preloadedState = store.getState();
-
-      res.send(
-        renderPage(
-          renderToString(
-            <Provider store={store}>
-              <StaticRouter location={req.url} context={context}>
-                <App />
-              </StaticRouter>
-            </Provider>
-          ),
-          preloadedState
-        )
+      const html = renderToString(
+        <Provider store={store}>
+          <StaticRouter location={req.url} context={context}>
+            <App />
+          </StaticRouter>
+        </Provider>
       );
+      const preloadedState = store.getState();
+      res.send(renderPage(html, preloadedState));
     })
     .catch(next);
 };

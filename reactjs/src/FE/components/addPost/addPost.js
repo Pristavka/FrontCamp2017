@@ -1,5 +1,5 @@
 import React from 'react';
-
+import { connect } from 'react-redux';
 import Header from '../header/header';
 import Message from '../message/massage';
 import styles from '../../assets/addPosts.scss';
@@ -7,7 +7,7 @@ import styles from '../../assets/addPosts.scss';
 import { addPosts } from '../../../api';
 import config from '../../../configs/config';
 
-export default class AddPost extends React.Component {
+export class AddPost extends React.Component {
 
   constructor(props) {
     super(props);
@@ -26,7 +26,7 @@ export default class AddPost extends React.Component {
       'author': this.state.author,
       'text': this.state.post
     }
-    addPosts(config.addPostsURL, post);
+    this.props.addNewPost(config.addPostsURL, post);
     this.showMessage();
   };
 
@@ -58,3 +58,8 @@ export default class AddPost extends React.Component {
     )
   };
 };
+
+export default connect(
+  null,
+  dispatch => ({ addNewPost })
+)(AddPost);

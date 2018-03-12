@@ -18,7 +18,7 @@ describe('Posts reducer', () => {
 
   it('Should handle FETCH_POSTS', () => {
     expect(posts({ posts: [] }, {
-      type: 'FETCH_POSTS',
+      type: FETCH_POSTS,
       posts: postsSpy
     })).toEqual({ posts: [
       {
@@ -35,7 +35,7 @@ describe('Posts reducer', () => {
         'text': 'Hello World!'
       }
     ] }, {
-      type: 'ADD_POSTS',
+      type: ADD_POSTS,
       posts: singlePost
     })).toEqual({ posts: [
       {

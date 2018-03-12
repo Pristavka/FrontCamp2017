@@ -39,6 +39,6 @@ export class PostsList extends React.Component {
 };
 
 export default connect(
-  state => ({ posts: state.posts }),
+  state => ({ posts: state.posts.posts }),
   dispatch => ({ fetchAllPosts })
 )(PostsList);
