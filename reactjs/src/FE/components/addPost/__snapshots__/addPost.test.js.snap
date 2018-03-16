@@ -1,0 +1,46 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Should render a AddPost 1`] = `
+<React.Fragment>
+  <Header />
+  <div
+    className="formWrapper"
+  >
+    <h1>
+      On this page you can add new post!
+    </h1>
+    <form
+      onSubmit={[Function]}
+    >
+      <div>
+        <h3>
+          Author's name:
+        </h3>
+        <input
+          name="author"
+          onChange={[Function]}
+          placeholder="Enter your name"
+          required={true}
+          type="text"
+        />
+      </div>
+      <div>
+        <h3>
+          Enter post:
+        </h3>
+        <textarea
+          name="post"
+          onChange={[Function]}
+          placeholder="Enter your post"
+          required={true}
+        />
+      </div>
+      <button
+        type="submit"
+      >
+        Save post
+      </button>
+    </form>
+  </div>
+</React.Fragment>
+`;

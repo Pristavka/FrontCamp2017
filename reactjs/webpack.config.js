@@ -1,5 +1,7 @@
+const webpack = require('webpack');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const autoprefixer = require('autoprefixer');
+const nodeExternals = require('webpack-node-externals');
 
 const frontConfig = {
   entry: './src/FE/index.js',
@@ -41,6 +43,9 @@ const frontConfig = {
   plugins: [
     new ExtractTextPlugin({
       filename: 'public/css/[name].bundle.css'
+    }),
+    new webpack.DefinePlugin({
+      __isBrowser__: 'true'
     })
   ]
 };
@@ -48,6 +53,7 @@ const frontConfig = {
 const backConfig = {
   entry: './src/BE/index.js',
   target: 'node',
+  externals: [nodeExternals()],
   output: {
     path: __dirname,
     filename: 'server.js',
@@ -57,7 +63,7 @@ const backConfig = {
     rules: [
       {
         test: /\.(js)$/,
-        exclude: /node_modules/,
+        // exclude: /node_modules/,
         use: ['babel-loader'],
       },
       {
@@ -77,7 +83,12 @@ const backConfig = {
         ],
       }
     ]
-  }
+  },
+  plugins: [
+    new webpack.DefinePlugin({
+      __isBrowser__: 'false'
+    })
+  ]
 };
 
 module.exports = [frontConfig, backConfig];

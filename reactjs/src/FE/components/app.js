@@ -1,8 +1,10 @@
 import React from 'react';
-
-import Main from './main/main';
+import { Switch, Route } from 'react-router-dom';
+import routes from './routes';
 import '../assets/global.scss';
 
-const App = () => <Main />;
+const App = () => (
+  <Switch>{routes.map((route, i) => <Route key={i} {...route} />)}</Switch>
+);
 
 export default App;

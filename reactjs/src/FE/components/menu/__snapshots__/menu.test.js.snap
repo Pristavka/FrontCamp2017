@@ -1,0 +1,23 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Should render a Menu 1`] = `
+<React.Fragment>
+  <div
+    className="slogan"
+  >
+    Blogs Portal
+  </div>
+  <Link
+    replace={false}
+    to="/"
+  >
+    Show all posts
+  </Link>
+  <Link
+    replace={false}
+    to="/addpost"
+  >
+    Add post
+  </Link>
+</React.Fragment>
+`;

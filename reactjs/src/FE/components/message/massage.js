@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { config } from '../../config/config';
+import config from '../../../configs/config';
 import styles from '../../assets/message.scss';
 
 const Message = (props) => (

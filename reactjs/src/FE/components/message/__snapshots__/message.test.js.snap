@@ -1,0 +1,9 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Should render a Message 1`] = `
+<div
+  className="successMsg"
+>
+  Your post has added successfuly!
+</div>
+`;

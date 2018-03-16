@@ -1,21 +1,20 @@
 import React from 'react';
-import PropTypes from 'prop-types';
-
+import { connect } from 'react-redux';
+import Header from '../header/header';
+import Message from '../message/massage';
 import styles from '../../assets/addPosts.scss';
-import { config } from '../../config/config';
 
-export default class AddPost extends React.Component {
-  static propTypes = {
-    addPosts: PropTypes.func,
-    showComponent: PropTypes.func,
-    showMessage: PropTypes.func
-  }
+import { addPosts } from '../../../api';
+import config from '../../../configs/config';
+
+export class AddPost extends React.Component {
 
   constructor(props) {
     super(props);
     this.state = {
       author: '',
-      post: ''
+      post: '',
+      showSuccess: false,
     };
   }
 
@@ -24,31 +23,43 @@ export default class AddPost extends React.Component {
   handleSubmit = (e) => {
     e.preventDefault();
     const post = {
-      'id': Date.now(),
       'author': this.state.author,
-      'description': this.state.post
+      'text': this.state.post
     }
-    this.props.addPosts(post);
-    this.props.showComponent(config.pages.postsList);
-    this.props.showMessage();
+    this.props.addNewPost(config.addPostsURL, post);
+    this.showMessage();
   };
+
+  showMessage = () => {
+    this.setState({ showSuccess: true});
+    setTimeout(() => this.setState({ showSuccess: false }), 5000);
+  }
 
   render() {
     return (
-      <div className={styles.formWrapper}>
-        <h1>On this page you can add new post!</h1>
-        <form onSubmit={this.handleSubmit}>
-          <div>
-            <h3>Author's name:</h3>
-              <input type="text" name="author" placeholder="Enter your name" onChange={this.handleChange} required/>
-          </div>
-          <div>
-            <h3>Enter post:</h3>
-              <textarea name="post" placeholder="Enter your post" onChange={this.handleChange} required></textarea>
-          </div>
-          <button type="submit">Save post</button>
-        </form>
-      </div>
+      <React.Fragment>
+        <Header/>
+        {this.state.showSuccess ? <Message /> : null}
+        <div className={styles.formWrapper}>
+          <h1>On this page you can add new post!</h1>
+          <form onSubmit={this.handleSubmit}>
+            <div>
+              <h3>Author's name:</h3>
+                <input type="text" name="author" placeholder="Enter your name" onChange={this.handleChange} required/>
+            </div>
+            <div>
+              <h3>Enter post:</h3>
+                <textarea name="post" placeholder="Enter your post" onChange={this.handleChange} required></textarea>
+            </div>
+            <button type="submit">Save post</button>
+          </form>
+        </div>
+      </React.Fragment>
     )
   };
 };
+
+export default connect(
+  null,
+  dispatch => ({ addNewPost })
+)(AddPost);

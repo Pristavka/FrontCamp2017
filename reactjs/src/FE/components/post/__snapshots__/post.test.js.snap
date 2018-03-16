@@ -1,0 +1,21 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Should render a Post 1`] = `
+<React.Fragment>
+  <div
+    className="post"
+  >
+    <h2
+      className="post__name"
+    >
+      Siarhei
+    </h2>
+    <div
+      className="post__description"
+    >
+      Hello World!
+    </div>
+  </div>
+  <hr />
+</React.Fragment>
+`;

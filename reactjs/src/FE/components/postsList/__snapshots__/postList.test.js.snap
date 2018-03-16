@@ -1,0 +1,35 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Should render a PostsList 1`] = `
+<React.Fragment>
+  <Sorting
+    posts={
+      Array [
+        Object {
+          "_id": 12354347,
+          "author": "Siarhei",
+          "text": "Hello World!",
+        },
+      ]
+    }
+    sortPosts={[Function]}
+  />
+  <h1
+    className="title"
+  >
+    This is the List fo all Blogs
+  </h1>
+  <React.Fragment>
+    <Post
+      key="12354347"
+      post={
+        Object {
+          "_id": 12354347,
+          "author": "Siarhei",
+          "text": "Hello World!",
+        }
+      }
+    />
+  </React.Fragment>
+</React.Fragment>
+`;
