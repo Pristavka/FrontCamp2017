@@ -1,6 +1,5 @@
 (() => {
-  angular.module('app')
-    .directive('taskForm', taskForm);
+  angular.module('app').directive('taskForm', taskForm);
 
   function taskForm() {
     const directive = {
@@ -10,5 +9,4 @@
 
     return directive;
   }
-
 })();

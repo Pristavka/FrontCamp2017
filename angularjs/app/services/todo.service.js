@@ -1,6 +1,5 @@
 (() => {
-  angular.module('app')
-    .factory('todoService', todoService);
+  angular.module('app').factory('todoService', todoService);
 
   todoService.$inject = ['$http', '$q'];
   function todoService($http, $q) {
@@ -12,7 +11,7 @@
     };
 
     function addNewItem(items, newItem) {
-      if(!newItem && !newItem.action) return;
+      if (!newItem && !newItem.action) return;
       items.push({
         action: newItem.action,
         done: false
@@ -21,7 +20,8 @@
     }
 
     function getItems() {
-      return $http.get('data/todo.json')
+      return $http
+        .get('data/todo.json')
         .then(resp => resp.data)
         .catch(() => $q.reject('Error'));
     }
@@ -30,17 +30,14 @@
       let count = 0;
 
       angular.forEach(items, item => {
-        if(!item.done) count++
-      })
+        if (!item.done) count++;
+      });
 
       return count;
     }
 
     function warningLevel(items) {
-      return incompleteCount(items) < 3
-        ? 'label-success'
-        : 'label-warning';
+      return incompleteCount(items) < 3 ? 'label-success' : 'label-warning';
     }
   }
-
 })();

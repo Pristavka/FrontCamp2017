@@ -1,6 +1,5 @@
 (() => {
-  angular.module('app')
-    .directive('headerApp', headerApp);
+  angular.module('app').directive('headerApp', headerApp);
 
   function headerApp() {
     const directive = {
@@ -10,5 +9,4 @@
 
     return directive;
   }
-
 })();

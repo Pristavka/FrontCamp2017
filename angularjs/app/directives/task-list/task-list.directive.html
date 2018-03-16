@@ -10,7 +10,9 @@
   <tbody>
     <tr ng-repeat="item in $ctrl.todo.items | checkedItems: $ctrl.showComplete | orderBy: ['-action']">
       <td ng-bind="item.action"></td>
-      <td><input type="checkbox" ng-model="item.done"></td>
+      <td>
+        <input type="checkbox" ng-model="item.done">
+      </td>
       <td>{{item.done ? 'Yes' : 'No'}}</td>
       <td class="text-right">
         <button type="button" class="btn btn-primary">

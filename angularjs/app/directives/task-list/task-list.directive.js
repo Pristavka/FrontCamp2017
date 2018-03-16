@@ -1,6 +1,5 @@
 (() => {
-  angular.module('app')
-    .directive('taskList', taskList);
+  angular.module('app').directive('taskList', taskList);
 
   function taskList() {
     const directive = {
@@ -10,5 +9,4 @@
 
     return directive;
   }
-
 })();

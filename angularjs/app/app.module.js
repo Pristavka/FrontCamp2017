@@ -1,4 +1,3 @@
 (() => {
   angular.module('app', ['ngSanitize']);
-
 })();
