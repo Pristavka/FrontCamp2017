@@ -5,6 +5,7 @@
   function Todo(model, todoService) {
     let $ctrl = this;
     $ctrl.todo = model;
+    $ctrl.disableAddButton = true;
     Object.assign($ctrl, todoService);
   }
 })();

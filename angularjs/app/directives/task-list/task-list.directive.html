@@ -3,22 +3,24 @@
     <tr>
       <th>Description</th>
       <th>Checkbox</th>
+      <th>Expiry</th>
       <th>Done</th>
       <th class="text-right">Commands</th>
     </tr>
   </thead>
   <tbody>
-    <tr ng-repeat="item in $ctrl.todo.items | checkedItems: $ctrl.showComplete | orderBy: ['-action']">
+    <tr ng-repeat="item in $ctrl.todo.items | checkedItems: $ctrl.showComplete | orderBy: ['expiry'] | filter: $ctrl.search.action">
       <td ng-bind="item.action"></td>
       <td>
         <input type="checkbox" ng-model="item.done">
       </td>
+      <td>{{$ctrl.getExpiryDate(item.expiry) | date: "dd MMM yyyy"}}</td>
       <td>{{item.done ? 'Yes' : 'No'}}</td>
       <td class="text-right">
         <button type="button" class="btn btn-primary">
           <span class="glyphicon glyphicon-edit" aria-hidden="true" title="Edit"></span>
         </button>
-        <button type="button" class="btn btn-danger">
+        <button type="button" class="btn btn-danger" ng-click="$ctrl.deleteItem($ctrl.todo.items, item)">
           <span class="glyphicon glyphicon-trash" aria-hidden="true" title="Delete"></span>
         </button>
       </td>
