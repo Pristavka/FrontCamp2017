@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html ng-controller="Todo as $ctrl">
+<html ng-controller="Todo as ctrl">
 
 <head>
 	<meta charset="utf-8">
-	<title>{{::$ctrl.todo.user}}'s TO DO List</title>
+	<title>{{::ctrl.todo.user}}'s TO DO List</title>
 	<link href="vendor/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
 	<link href="vendor/bootstrap/dist/css/bootstrap-theme.min.css" rel="stylesheet">
 	<link href="css/main.css" rel="stylesheet">
@@ -25,7 +25,7 @@
 			<div class="panel-body">
 				<task-list></task-list>
 				<label>
-					<input type="checkbox" ng-model="$ctrl.showComplete">Show Complete
+					<input type="checkbox" ng-model="ctrl.todo.showComplete">Show Complete
 				</label>
 			</div>
 		</div>
@@ -37,10 +37,18 @@
 	<script src="services/model.service.js"></script>
 	<script src="services/todo.service.js"></script>
 	<script src="controllers/todo.controller.js"></script>
+
+	<script src="components/header/header.module.js"></script>
+	<script src="components/header/header.component.js"></script>
+	<script src="components/header/header.controller.js"></script>
+	<script src="components/task-form/task-form.module.js"></script>
+	<script src="components/task-form/task-form.component.js"></script>
+	<script src="components/task-form/task-form.controller.js"></script>
+	<script src="components/task-list/task-list.module.js"></script>
+	<script src="components/task-list/task-list.component.js"></script>
+	<script src="components/task-list/task-list.controller.js"></script>
+
 	<script src="filters/checkedItems.filter.js"></script>
-	<script src="directives/header/header.directive.js"></script>
-	<script src="directives/task-form/task-form.directive.js"></script>
-	<script src="directives/task-list/task-list.directive.js"></script>
 </body>
 
 </html>

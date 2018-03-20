@@ -1,3 +1,8 @@
 (() => {
-  angular.module('app', ['ngSanitize']);
+  angular.module('app', [
+    'ngSanitize',
+    'headerModule',
+    'taskFormModule',
+    'taskListModule'
+  ]);
 })();

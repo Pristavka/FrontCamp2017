@@ -31,11 +31,9 @@
 
     function checkAddActionField(disableAddButton, newItem) {
       if(newItem.length < 20) {
-        console.log('<20',disableAddButton, newItem);
         disableAddButton = true;
         return;
       }
-      console.log('>20');
       disableAddButton = false;
       return;
     }
