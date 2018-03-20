@@ -1,7 +1,6 @@
 (() => {
   angular.module('app').value('model', {
     user: 'Siarhei',
-    userPhoto: 'images/logo.jpeg',
-    showComplete: false
+    userPhoto: 'images/logo.jpeg'
   });
 })();

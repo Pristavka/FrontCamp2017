@@ -5,14 +5,11 @@
   "main": "index.js",
   "scripts": {
     "start": "gulp",
-    "prestart": "npm install",
-    "postinstall": "bower install"
+    "prestart": "npm install"
   },
   "author": "",
   "license": "ISC",
-  "dependencies": {
-    "bower": "^1.5.3"
-  },
+  "dependencies": {},
   "devDependencies": {
     "gulp": "^3.9.0",
     "gulp-load-plugins": "^1.0.0-rc.1",

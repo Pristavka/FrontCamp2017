@@ -3,7 +3,7 @@ var gulp = require('gulp');
 var plug = require('gulp-load-plugins')();
 var ngAnnotate = require('gulp-ng-annotate')();
 
-var source = ['app/**/*.js', 'vendor/**/*.*'];
+var source = ['app/**/*.js'];
 
 gulp.task('webserver', () => {
   return gulp

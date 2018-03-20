@@ -4,7 +4,7 @@
   TaskForm.$inject = ['model', 'todoService'];
   function TaskForm(model, todoService) {
     this.todo = model;
-    this.disableAddButton = true;
+    this.disableAddButton = false;
     Object.assign(this, todoService);
   }
 })();

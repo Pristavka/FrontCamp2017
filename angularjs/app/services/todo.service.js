@@ -7,6 +7,7 @@
       addNewItem,
       checkAddActionField,
       deleteItem,
+      saveItem,
       getItems,
       getExpiryDate,
       incompleteCount,
@@ -16,6 +17,7 @@
     function addNewItem(items, newItem) {
       if (!newItem && !newItem.action) return;
       items.push({
+        id: Date.now(),
         action: newItem.action,
         done: false,
         expiry: 10
@@ -27,6 +29,13 @@
       items.find((el, i) => {
         if(el === item) items.splice(i, 1);
       });
+    }
+
+    function saveItem(items, changedItem) {
+      items.find(el => {
+        if(el.id === changedItem.id) el.action = changedItem.action;
+      });
+      changedItem.action = '';
     }
 
     function checkAddActionField(disableAddButton, newItem) {
