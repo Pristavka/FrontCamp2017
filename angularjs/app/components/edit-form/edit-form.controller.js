@@ -4,9 +4,8 @@
   Edit.$inject = ['model', 'todoService', '$routeParams'];
   function Edit(model, todoService, $routeParams) {
     this.todo = model;
-    this.editAction = this.todo.find(el => {
-      if(el.id === $routeParams['id']) return;
+    this.editAction = this.todo.items.find(el => {
+      if(el.id == $routeParams['id']) return el;
     });
-    Object.assign(this, todoService);
   }
 })();
