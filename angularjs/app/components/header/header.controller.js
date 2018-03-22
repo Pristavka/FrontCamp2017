@@ -1,9 +1,10 @@
 (() => {
-  angular.module('headerModule').controller('Header', Header);
+  angular.module('headerModule').controller('HeaderController', HeaderController);
 
-  Header.$inject = ['model', 'todoService'];
-  function Header(model, todoService) {
+  HeaderController.$inject = ['model', 'todoService'];
+  function HeaderController(model, todoService) {
     this.todo = model;
     Object.assign(this, todoService);
+    return this;
   }
 })();

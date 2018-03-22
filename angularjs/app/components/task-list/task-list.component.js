@@ -1,7 +1,7 @@
 (() => {
   angular.module('taskListModule').component('taskList', {
     templateUrl: 'components/task-list/task-list.html',
-    controller: 'TaskList',
+    controller: 'TaskListController',
     controllerAs: 'ctrl'
   });
 })();

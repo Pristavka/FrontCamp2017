@@ -1,9 +1,10 @@
 (() => {
-  angular.module('taskListModule').controller('TaskList', TaskList);
+  angular.module('taskListModule').controller('TaskListController', TaskListController);
 
-  TaskList.$inject = ['model', 'todoService'];
-  function TaskList(model, todoService) {
+  TaskListController.$inject = ['model', 'todoService'];
+  function TaskListController(model, todoService) {
     this.todo = model;
     Object.assign(this, todoService);
+    return this;
   }
 })();

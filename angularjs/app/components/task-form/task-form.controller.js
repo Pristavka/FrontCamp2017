@@ -1,10 +1,11 @@
 (() => {
-  angular.module('taskFormModule').controller('TaskForm', TaskForm);
+  angular.module('taskFormModule').controller('TaskFormController', TaskFormController);
 
-  TaskForm.$inject = ['model', 'todoService'];
-  function TaskForm(model, todoService) {
+  TaskFormController.$inject = ['model', 'todoService'];
+  function TaskFormController(model, todoService) {
     this.todo = model;
     this.disableAddButton = false;
     Object.assign(this, todoService);
+    return this;
   }
 })();

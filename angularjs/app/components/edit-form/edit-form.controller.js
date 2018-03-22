@@ -1,11 +1,12 @@
 (() => {
-  angular.module('editModule').controller('Edit', Edit);
+  angular.module('editModule').controller('EditFormController', EditFormController);
 
-  Edit.$inject = ['model', 'todoService', '$routeParams'];
-  function Edit(model, todoService, $routeParams) {
+  EditFormController.$inject = ['model', 'todoService', '$routeParams'];
+  function EditFormController(model, todoService, $routeParams) {
     this.todo = model;
     this.editAction = this.todo.items.find(el => {
       if(el.id == $routeParams['id']) return el;
     });
+    return this;
   }
 })();
