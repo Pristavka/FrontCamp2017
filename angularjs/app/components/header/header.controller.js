@@ -1,10 +1,8 @@
-(() => {
-  angular.module('headerModule').controller('HeaderController', HeaderController);
+import img from '../../images/logo.jpeg';
 
-  HeaderController.$inject = ['model', 'todoService'];
-  function HeaderController(model, todoService) {
+export default class HeaderController {
+  constructor(model) {
     this.todo = model;
-    Object.assign(this, todoService);
-    return this;
+    this.todo.userPhoto = img;
   }
-})();
+}

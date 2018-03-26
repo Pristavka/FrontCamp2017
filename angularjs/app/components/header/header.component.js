@@ -1,7 +1,10 @@
-(() => {
-  angular.module('headerModule').component('headerApp', {
-    templateUrl: 'components/header/header.html',
-    controller: 'HeaderController',
-    controllerAs: 'ctrl'
-  });
-})();
+import template from './header.template.js';
+import HeaderController from './header.controller';
+
+const headerComponent = {
+  template,
+  controller: HeaderController,
+  controllerAs: 'ctrl'
+};
+
+export default headerComponent;

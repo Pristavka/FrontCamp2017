@@ -1,4 +1,4 @@
-<div class="page-header">
+const headerTemplate = `<div class="page-header">
   <h1>
     <img
       class="photo"
@@ -12,4 +12,6 @@
       {{ctrl.incompleteCount(ctrl.todo.items)}}
     </span>
   </h1>
-</div>
+</div>`;
+
+export default headerTemplate;
