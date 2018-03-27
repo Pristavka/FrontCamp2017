@@ -56,6 +56,16 @@ module.exports = {
           limit: 1000,
           name: 'img/[name].[ext]',
         }
+      },
+      {
+        test: /\.json$/,
+        exclude: /node_modules/,
+        use: [
+          {
+            loader: 'file-loader',
+            options: {name: 'data/[name].[ext]'}
+          }
+        ]
       }
     ]
   },

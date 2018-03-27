@@ -1,16 +1,10 @@
-const todoService = ($http, $q) => {
-  return {
-    addNewItem,
-    checkAddActionField,
-    deleteItem,
-    saveItem,
-    getItems,
-    getExpiryDate,
-    incompleteCount,
-    warningLevel
-  };
+export default class TodoService {
+  constructor($http, $q) {
+    this.$http = $http;
+    this.$q = $q;
+  }
 
-  function addNewItem(items, newItem) {
+  addNewItem(items, newItem) {
     if (!newItem && !newItem.action) return;
     items.push({
       id: Date.now(),
@@ -21,20 +15,20 @@ const todoService = ($http, $q) => {
     newItem.action = '';
   }
 
-  function deleteItem(items, item) {
+  deleteItem(items, item) {
     items.find((el, i) => {
       if (el === item) items.splice(i, 1);
     });
   }
 
-  function saveItem(items, changedItem) {
+  saveItem(items, changedItem) {
     items.find(el => {
       if (el.id === changedItem.id) el.action = changedItem.action;
     });
     changedItem.action = '';
   }
 
-  function checkAddActionField(disableAddButton, newItem) {
+  checkAddActionField(disableAddButton, newItem) {
     if (newItem.length < 20) {
       disableAddButton = true;
       return;
@@ -43,31 +37,27 @@ const todoService = ($http, $q) => {
     return;
   }
 
-  function getItems() {
-    return $http
+  getItems() {
+    return this.$http
       .get('data/todo.json')
       .then(resp => resp.data)
-      .catch(() => $q.reject('Error'));
+      .catch(() => this.$q.reject('Error'));
   }
 
-  function getExpiryDate(date) {
+  getExpiryDate(date) {
     const now = new Date();
     return now.setDate(now.getDate() + date);
   }
 
-  function incompleteCount(items) {
+  incompleteCount(items) {
     let count = 0;
-
     items.forEach(item => {
       if (!item.done) count++;
     });
-
     return count;
   }
 
-  function warningLevel(items) {
-    return incompleteCount(items) < 3 ? 'label-success' : 'label-warning';
+  warningLevel(items) {
+    return this.incompleteCount(items) < 3 ? 'label-success' : 'label-warning';
   }
-};
-
-export default todoService;
+}

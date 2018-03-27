@@ -1,10 +1,7 @@
-(() => {
-  angular.module('taskListModule').controller('TaskListController', TaskListController);
-
-  TaskListController.$inject = ['model', 'todoService'];
-  function TaskListController(model, todoService) {
+export default class TaskListController {
+  constructor(model, TodoService) {
     this.todo = model;
-    Object.assign(this, todoService);
-    return this;
+    this.showComplete = false;
+    this.todoService = TodoService;
   }
-})();
+}

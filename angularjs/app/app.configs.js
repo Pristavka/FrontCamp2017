@@ -1,22 +1,19 @@
-// routes.$inject = ['$routeProvider'];
-
 export const routes = $routeProvider => {
   $routeProvider
     .when('/', {
-      template: '<task-list></task-list>'
+      template: '<task-list-component></task-list-component>'
     })
     .when('/addTask', {
-      template: '<task-form></task-form>'
+      template: '<task-form-component></task-form-component>'
     })
     .when('/editTask/:id', {
-      template: '<edit-form></edit-form>'
+      template: '<edit-form-component></edit-form-component>'
     })
     .otherwise('/');
 };
 
-// runApp.$inject = ['todoService', 'model'];
-export const runApp = (todoService, model) => {
-  todoService
+export const runApp = (TodoService, model) => {
+  TodoService
     .getItems()
     .then(data => (model.items = data))
     .catch(err => console.log(err));

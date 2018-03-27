@@ -1,7 +1,10 @@
-(() => {
-  angular.module('editModule').component('editForm', {
-    templateUrl: 'components/edit-form/edit-form.html',
-    controller: 'EditFormController',
-    controllerAs: 'ctrl'
-  });
-})();
+import template from './edit-form.template';
+import EditFormController from './edit-form.controller';
+
+const editFormComponent = {
+  template,
+  controller: EditFormController,
+  controllerAs: 'ctrl'
+};
+
+export default editFormComponent;

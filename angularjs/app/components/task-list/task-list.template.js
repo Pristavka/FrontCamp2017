@@ -1,5 +1,5 @@
 
-<div class="panel">
+const taskListTemplate = `<div class="panel">
   <label for="action">Find action:</label>
   <div class="input-group">
     <input
@@ -36,7 +36,7 @@
               ng-model="item.done"
             >
           </td>
-          <td>{{ctrl.getExpiryDate(item.expiry) | date: "dd MMM yyyy"}}</td>
+          <td>{{ctrl.todoService.getExpiryDate(item.expiry) | date: "dd MMM yyyy"}}</td>
           <td>{{item.done ? 'Yes' : 'No'}}</td>
           <td class="text-right">
             <button type="button" class="btn btn-primary">
@@ -51,7 +51,7 @@
             <button
               type="button"
               class="btn btn-danger"
-              ng-click="ctrl.deleteItem(ctrl.todo.items, item)"
+              ng-click="ctrl.todoService.deleteItem(ctrl.todo.items, item)"
             >
               <span
                 class="glyphicon glyphicon-trash"
@@ -67,4 +67,6 @@
       <input type="checkbox" ng-model="ctrl.showComplete">Show Complete
     </label>
   </div>
-</div>
+</div>`;
+
+export default taskListTemplate;

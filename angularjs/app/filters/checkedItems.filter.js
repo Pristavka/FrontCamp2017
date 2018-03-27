@@ -1,19 +1,17 @@
-(() => {
-  angular.module('app')
-    .filter('checkedItems', checkedItems);
+import angular from 'angular';
 
-    function checkedItems() {
-      return function(items, showComplete) {
-        if(!angular.isArray(items)) return items;
+const checkedItems = () => {
+  return function(items, showComplete) {
+    if(!angular.isArray(items)) return items;
 
-        let result = [];
-        angular.forEach(items, item => {
-          if(!item.done || showComplete) {
-            result.push(item);
-          };
-        });
-        return result;
+    let result = [];
+    angular.forEach(items, item => {
+      if(!item.done || showComplete) {
+        result.push(item);
       }
-    }
+    });
+    return result;
+  };
+};
 
-})();
+export default checkedItems;
