@@ -1,7 +1,8 @@
 export default class TodoService {
-  constructor($http, $q) {
+  constructor($http, $q, $location) {
     this.$http = $http;
     this.$q = $q;
+    this.$location = $location;
   }
 
   addNewItem(items, newItem) {
@@ -13,6 +14,7 @@ export default class TodoService {
       expiry: 10
     });
     newItem.action = '';
+    this.$location.path('/');
   }
 
   deleteItem(items, item) {

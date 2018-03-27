@@ -1,5 +1,5 @@
 const taskFormTemplate = `<div class="panel">
-  <form novalidate name="newTask">
+  <form name="newTask">
     <div class="form-group">
       <label for="action">Add action:</label>
       <div class="input-group">
@@ -15,7 +15,7 @@ const taskFormTemplate = `<div class="panel">
           <button
             class="btn btn-primary"
             ng-click="ctrl.todoService.addNewItem(ctrl.todo.items, ctrl.newItem)"
-            ng-disabled="ctrl.disableAddButton"
+            ng-disabled="!ctrl.newItem && !ctrl.newItem.action"
           >Add</button>
         </span>
       </div>

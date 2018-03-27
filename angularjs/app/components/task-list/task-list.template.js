@@ -67,6 +67,25 @@ const taskListTemplate = `<div class="panel">
       <input type="checkbox" ng-model="ctrl.showComplete">Show Complete
     </label>
   </div>
+</div>
+<div class="text-center">
+  <ul ng-if="ctrl.pager.pages.length" class="pagination">
+      <li ng-class="{disabled:ctrl.pager.currentPage === 1}">
+          <a ng-click="ctrl.setPage(1)">First</a>
+      </li>
+      <li ng-class="{disabled:ctrl.pager.currentPage === 1}">
+          <a ng-click="ctrl.setPage(ctrl.pager.currentPage - 1)">Previous</a>
+      </li>
+      <li ng-repeat="page in ctrl.pager.pages" ng-class="{active:ctrl.pager.currentPage === page}">
+          <a ng-click="ctrl.setPage(page)">{{page}}</a>
+      </li>               
+      <li ng-class="{disabled:ctrl.pager.currentPage === ctrl.pager.totalPages}">
+          <a ng-click="ctrl.setPage(ctrl.pager.currentPage + 1)">Next</a>
+      </li>
+      <li ng-class="{disabled:ctrl.pager.currentPage === ctrl.pager.totalPages}">
+          <a ng-click="ctrl.setPage(ctrl.pager.totalPages)">Last</a>
+      </li>
+  </ul>
 </div>`;
 
 export default taskListTemplate;

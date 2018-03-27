@@ -4,9 +4,9 @@ import ngSanitize from 'angular-sanitize';
 
 import { routes, runApp } from './app.configs';
 import TodoService from './services/todo.service';
+import PaginationService from './services/pagination.service';
 import model from './services/model.service';
 import checkedItems from './filters/checkedItems.filter';
-//import Todo from './controllers/todo.controller';
 
 import AppComponent from './app.component';
 
@@ -25,10 +25,10 @@ const AppModule = angular
     editModule
   ])
   .service('TodoService', TodoService)
+  .service('PaginationService', PaginationService)
   .component('appComponent', AppComponent)
   .value('model', model)
   .filter('checkedItems', checkedItems)
-  //.controller('Todo', Todo)
   .config(routes)
   .run(runApp)
   .name;
