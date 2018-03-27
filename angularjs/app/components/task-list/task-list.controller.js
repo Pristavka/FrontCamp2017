@@ -21,6 +21,6 @@ export default class TaskListController {
     // get pager object from service
     this.pager = this.paginationService.getPagination(this.todo.items.length, page);
     // get current page of items
-    this.items = this.dummyItems.slice(this.pager.startIndex, this.pager.endIndex + 1);
+    this.items = this.todo.items.slice(this.pager.startIndex, this.pager.endIndex + 1);
   }
 }
