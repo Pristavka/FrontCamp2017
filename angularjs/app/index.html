@@ -1,41 +1,15 @@
 <!DOCTYPE html>
-<html ng-controller="Todo as ctrl">
+<html>
 <head>
 	<meta charset="utf-8">
-	<title>{{::ctrl.todo.user}}'s TO DO List</title>
-	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
-	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular-sanitize.js"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.9/angular-route.min.js"></script>
+	<title>Siarhei's TO DO List</title>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 	<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
 	<link href="https://maxcdn.bootstrapcdn.com/bootswatch/4.0.0/cerulean/bootstrap.min.css" rel="stylesheet">
-	<link href="css/main.css" rel="stylesheet">
-	<link href="css/ng-cloak.css" rel="stylesheet">
 </head>
 <body ng-cloak>
 	<div class="container">
-			<header-app></header-app>
-			<button type="button" class="btn"><a href="#!/">Main page</a></button>
-			<button type="button" class="btn"><a href="#!/addTask">Add new Task</a></button>
-			<ng-view></ng-view>
+			<app-component></app-component>
 	</div>
-	<script src="app.module.js"></script>
-	<script src="app.config.js"></script>
-	<script src="services/model.service.js"></script>
-	<script src="services/todo.service.js"></script>
-	<script src="controllers/todo.controller.js"></script>
-	<script src="components/header/header.module.js"></script>
-	<script src="components/header/header.component.js"></script>
-	<script src="components/header/header.controller.js"></script>
-	<script src="components/task-form/task-form.module.js"></script>
-	<script src="components/task-form/task-form.component.js"></script>
-	<script src="components/task-form/task-form.controller.js"></script>
-	<script src="components/task-list/task-list.module.js"></script>
-	<script src="components/task-list/task-list.component.js"></script>
-	<script src="components/task-list/task-list.controller.js"></script>
-	<script src="components/edit-form/edit-form.module.js"></script>
-	<script src="components/edit-form/edit-form.component.js"></script>
-	<script src="components/edit-form/edit-form.controller.js"></script>
-	<script src="filters/checkedItems.filter.js"></script>
 </body>
 </html>

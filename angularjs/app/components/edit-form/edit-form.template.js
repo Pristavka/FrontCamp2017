@@ -1,4 +1,4 @@
-<div class="panel">
+const editFormTemplate = `<div class="panel">
   <form novalidate name="newTask">
     <div class="form-group">
       <label for="action">Edit action <b>{{ctrl.editAction.action}}</b>:</label>
@@ -20,4 +20,6 @@
       </div>
     </div>
   </form>
-</div>
+</div>`;
+
+export default editFormTemplate;

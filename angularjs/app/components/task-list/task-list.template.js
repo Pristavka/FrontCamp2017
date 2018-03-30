@@ -1,5 +1,5 @@
 
-<div class="panel">
+const taskListTemplate = `<div class="panel">
   <label for="action">Find action:</label>
   <div class="input-group">
     <input
@@ -36,7 +36,7 @@
               ng-model="item.done"
             >
           </td>
-          <td>{{ctrl.getExpiryDate(item.expiry) | date: "dd MMM yyyy"}}</td>
+          <td>{{ctrl.todoService.getExpiryDate(item.expiry) | date: "dd MMM yyyy"}}</td>
           <td>{{item.done ? 'Yes' : 'No'}}</td>
           <td class="text-right">
             <button type="button" class="btn btn-primary">
@@ -51,7 +51,7 @@
             <button
               type="button"
               class="btn btn-danger"
-              ng-click="ctrl.deleteItem(ctrl.todo.items, item)"
+              ng-click="ctrl.todoService.deleteItem(ctrl.todo.items, item)"
             >
               <span
                 class="glyphicon glyphicon-trash"
@@ -68,3 +68,24 @@
     </label>
   </div>
 </div>
+<div class="text-center">
+  <ul ng-if="ctrl.pager.pages.length" class="pagination">
+      <li ng-class="{disabled:ctrl.pager.currentPage === 1}">
+          <a ng-click="ctrl.setPage(1)">First</a>
+      </li>
+      <li ng-class="{disabled:ctrl.pager.currentPage === 1}">
+          <a ng-click="ctrl.setPage(ctrl.pager.currentPage - 1)">Previous</a>
+      </li>
+      <li ng-repeat="page in ctrl.pager.pages" ng-class="{active:ctrl.pager.currentPage === page}">
+          <a ng-click="ctrl.setPage(page)">{{page}}</a>
+      </li>               
+      <li ng-class="{disabled:ctrl.pager.currentPage === ctrl.pager.totalPages}">
+          <a ng-click="ctrl.setPage(ctrl.pager.currentPage + 1)">Next</a>
+      </li>
+      <li ng-class="{disabled:ctrl.pager.currentPage === ctrl.pager.totalPages}">
+          <a ng-click="ctrl.setPage(ctrl.pager.totalPages)">Last</a>
+      </li>
+  </ul>
+</div>`;
+
+export default taskListTemplate;

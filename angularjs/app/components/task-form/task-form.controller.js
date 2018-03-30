@@ -1,11 +1,6 @@
-(() => {
-  angular.module('taskFormModule').controller('TaskFormController', TaskFormController);
-
-  TaskFormController.$inject = ['model', 'todoService'];
-  function TaskFormController(model, todoService) {
+export default class TaskFormController {
+  constructor(model, TodoService) {
     this.todo = model;
-    this.disableAddButton = false;
-    Object.assign(this, todoService);
-    return this;
+    this.todoService = TodoService;
   }
-})();
+}

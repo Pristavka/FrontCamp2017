@@ -1,7 +1,11 @@
-(() => {
-  angular.module('taskFormModule').component('taskForm', {
-    templateUrl: 'components/task-form/task-form.html',
-    controller: 'TaskFormController',
-    controllerAs: 'ctrl'
-  });
-})();
+import template from './task-form.template';
+import TaskFormController from './task-form.controller';
+
+const taskFormComponent = {
+  template,
+  controller: TaskFormController,
+  controllerAs: 'ctrl'
+};
+
+export default taskFormComponent;
+
