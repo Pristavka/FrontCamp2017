@@ -1,7 +1,7 @@
 import angular from 'angular';
 
 const checkedItems = () => {
-  return function(items, showComplete) {
+  return (items, showComplete) => {
     if(!angular.isArray(items)) return items;
 
     let result = [];
